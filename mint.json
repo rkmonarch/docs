@@ -63,10 +63,7 @@
         {
           "group": "Editing",
           "icon": "pen-paintbrush",
-          "pages": [
-            "development",
-            "web-editor"
-          ]
+          "pages": ["development", "web-editor"]
         },
         "settings/global",
         "settings/navigation",
@@ -156,10 +153,7 @@
         {
           "icon": "code",
           "group": "Custom Scripts",
-          "pages": [
-            "advanced/custom/css",
-            "advanced/custom/js"
-          ]
+          "pages": ["advanced/custom/css", "advanced/custom/js"]
         },
         {
           "icon": "folder",
@@ -173,9 +167,7 @@
         {
           "icon": "plug",
           "group": "Extensions",
-          "pages": [
-            "advanced/widget/chat"
-          ]
+          "pages": ["advanced/widget/chat"]
         },
         {
           "icon": "brackets-curly",
@@ -210,10 +202,7 @@
     },
     {
       "group": "SDKs",
-      "pages": [
-        "integrations/sdks/speakeasy",
-        "integrations/sdks/stainless"
-      ]
+      "pages": ["integrations/sdks/speakeasy", "integrations/sdks/stainless"]
     },
     {
       "group": "Support",
@@ -225,28 +214,13 @@
     },
     {
       "group": "Privacy",
-      "pages": [
-        "integrations/privacy/overview",
-        "integrations/privacy/osano"
-      ]
+      "pages": ["integrations/privacy/overview", "integrations/privacy/osano"]
     },
     {
       "group": "Components",
       "pages": [
         "content/components/accordions",
-        "content/components/accordion-groups",
-        "content/components/callouts",
-        "content/components/cards",
-        "content/components/card-groups",
-        "content/components/code",
-        "content/components/code-groups",
-        "content/components/frames",
-        "content/components/icons",
-        "content/components/mermaid-diagrams",
-        "content/components/steps",
-        "content/components/tabs",
-        "content/components/tooltips",
-        "content/components/update"
+        "content/components/accordion-groups"
       ]
     },
     {
@@ -260,9 +234,7 @@
     },
     {
       "group": "Changelog",
-      "pages": [
-        "changelog/overview"
-      ]
+      "pages": ["changelog/overview"]
     }
   ],
   "footer": {
