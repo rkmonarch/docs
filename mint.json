@@ -52,7 +52,7 @@
     },
     {
       "name": "API Components",
-      "url": "content"
+      "url": "api"
     }
   ],
   "navigation": [
@@ -79,10 +79,7 @@
     },
     {
       "group": "API Components",
-      "pages": [
-        "content/components/accordions",
-        "content/components/accordion-groups"
-      ]
+      "pages": ["api/quickstart"]
     }
   ],
   "footer": {
