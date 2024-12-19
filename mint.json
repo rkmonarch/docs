@@ -21,7 +21,7 @@
       "method": "bearer"
     }
   },
-  "background": {
+  "background": { "api-reference/endpoint/create"
     "style": "windows"
   },
   "topbarLinks": [
@@ -226,11 +226,9 @@
     {
       "group": "API Components",
       "pages": [
-        "content/components/params",
-        "content/components/responses",
-        "content/components/expandables",
-        "content/components/sticky-examples"
-      ]
+        "api-reference/endpoint/create",
+        "api-reference/endpoint/get"
+            ]
     },
     {
       "group": "Changelog",
