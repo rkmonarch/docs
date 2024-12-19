@@ -1,91 +1,349 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Starter Kit",
+  "name": "Mintlify",
   "logo": {
+    "light": "/logo/light.svg",
     "dark": "/logo/dark.svg",
-    "light": "/logo/light.svg"
+    "href": "https://mintlify.com"
   },
+  "layout": "sidenav",
   "favicon": "/favicon.svg",
+  "sidebar": {
+    "items": "border"
+  },
   "colors": {
     "primary": "#0D9373",
-    "light": "#07C983",
-    "dark": "#0D9373",
-    "anchors": {
-      "from": "#0D9373",
-      "to": "#07C983"
+    "light": "#55D799",
+    "dark": "#0D9373"
+  },
+  "api": {
+    "auth": {
+      "method": "bearer"
     }
+  },
+  "background": {
+    "style": "windows"
   },
   "topbarLinks": [
     {
-      "name": "Support",
-      "url": "mailto:hi@mintlify.com"
+      "name": "Community",
+      "url": "https://mintlify.com/community"
     }
   ],
   "topbarCtaButton": {
-    "name": "Dashboard",
-    "url": "https://dashboard.mintlify.com"
+    "name": "Get Started",
+    "url": "https://mintlify.com/start"
+  },
+  "codeBlock": {
+    "mode": "auto"
+  },
+  "feedback": {
+    "thumbsRating": true,
+    "suggestEdit": true
   },
   "tabs": [
     {
-      "name": "API Reference",
-      "url": "api-reference"
-    }
-  ],
-  "anchors": [
-    {
-      "name": "Documentation",
-      "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
+      "name": "Components",
+      "url": "content"
     },
     {
-      "name": "Community",
-      "icon": "slack",
-      "url": "https://mintlify.com/community"
+      "name": "Integrations",
+      "url": "integrations"
     },
     {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
+      "name": "Changelog",
+      "url": "changelog"
     }
   ],
   "navigation": [
     {
-      "group": "Get Started",
+      "group": "Getting Started",
       "pages": [
-        "introduction",
         "quickstart",
-        "development"
+        {
+          "group": "Editing",
+          "icon": "pen-paintbrush",
+          "pages": [
+            "development",
+            "web-editor"
+          ]
+        },
+        "settings/global",
+        "settings/navigation",
+        "migration"
       ]
     },
     {
-      "group": "Essentials",
+      "group": "Writing Content",
       "pages": [
-        "essentials/markdown",
-        "essentials/code",
-        "essentials/images",
-        "essentials/settings",
-        "essentials/navigation",
-        "essentials/reusable-snippets"
+        "page",
+        "text",
+        "image-embeds",
+        "list-table",
+        "code",
+        "reusable-snippets"
       ]
     },
     {
-      "group": "API Documentation",
+      "group": "API References",
       "pages": [
-        "api-reference/introduction"
+        "api-playground/overview",
+        {
+          "group": "Using OpenAPI",
+          "icon": "brackets-curly",
+          "pages": [
+            "api-playground/openapi/setup",
+            "api-playground/openapi/writing-openapi",
+            "api-playground/openapi/advanced-features"
+          ]
+        },
+        {
+          "group": "Using MDX",
+          "icon": "markdown",
+          "pages": [
+            "api-playground/mdx/configuration",
+            "api-playground/mdx/authentication"
+          ]
+        },
+        "api-playground/troubleshooting"
       ]
     },
     {
-      "group": "Endpoint Examples",
+      "group": "Configurations",
       "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
+        {
+          "icon": "user-lock",
+          "group": "Auth & Personalization",
+          "pages": [
+            "settings/authentication-personalization/authentication",
+            "settings/authentication-personalization/personalization",
+            "settings/authentication-personalization/authentication-vs-personalization",
+            {
+              "group": "Authentication Setup",
+              "pages": [
+                "settings/authentication-personalization/authentication-setup/choosing-a-handshake",
+                "settings/authentication-personalization/authentication-setup/password",
+                "settings/authentication-personalization/authentication-setup/jwt",
+                "settings/authentication-personalization/authentication-setup/oauth",
+                "settings/authentication-personalization/authentication-setup/mintlify"
+              ]
+            },
+            {
+              "group": "Personalization Setup",
+              "pages": [
+                "settings/authentication-personalization/personalization-setup/choosing-a-handshake",
+                "settings/authentication-personalization/personalization-setup/shared-session",
+                "settings/authentication-personalization/personalization-setup/jwt",
+                "settings/authentication-personalization/personalization-setup/oauth"
+              ]
+            },
+            "settings/authentication-personalization/sending-data"
+          ]
+        },
+        "settings/custom-domain",
+        "settings/seo",
+        "settings/broken-links",
+        "settings/versioning",
+        "settings/add-members",
+        "settings/github",
+        "settings/gitlab",
+        "settings/preview-deployments"
+      ]
+    },
+    {
+      "group": "Advanced",
+      "pages": [
+        {
+          "icon": "code",
+          "group": "Custom Scripts",
+          "pages": [
+            "advanced/custom/css",
+            "advanced/custom/js"
+          ]
+        },
+        {
+          "icon": "folder",
+          "group": "Custom Subdirectory",
+          "pages": [
+            "advanced/subpath/cloudflare",
+            "advanced/subpath/route53-cloudfront",
+            "advanced/subpath/vercel"
+          ]
+        },
+        {
+          "icon": "plug",
+          "group": "Extensions",
+          "pages": [
+            "advanced/widget/chat"
+          ]
+        },
+        {
+          "icon": "brackets-curly",
+          "group": "REST API",
+          "pages": [
+            "advanced/rest-api/overview",
+            "advanced/rest-api/trigger-update",
+            "advanced/rest-api/update-status"
+          ]
+        },
+        "settings/authentication"
+      ]
+    },
+    {
+      "group": "Analytics",
+      "pages": [
+        "integrations/analytics/overview",
+        "integrations/analytics/amplitude",
+        "integrations/analytics/clearbit",
+        "integrations/analytics/fathom",
+        "integrations/analytics/google-analytics",
+        "integrations/analytics/google-tag-manager",
+        "integrations/analytics/heap",
+        "integrations/analytics/hotjar",
+        "integrations/analytics/koala",
+        "integrations/analytics/logrocket",
+        "integrations/analytics/mixpanel",
+        "integrations/analytics/pirsch",
+        "integrations/analytics/plausible",
+        "integrations/analytics/posthog"
+      ]
+    },
+    {
+      "group": "SDKs",
+      "pages": [
+        "integrations/sdks/speakeasy",
+        "integrations/sdks/stainless"
+      ]
+    },
+    {
+      "group": "Support",
+      "pages": [
+        "integrations/support/overview",
+        "integrations/support/intercom",
+        "integrations/support/front"
+      ]
+    },
+    {
+      "group": "Privacy",
+      "pages": [
+        "integrations/privacy/overview",
+        "integrations/privacy/osano"
+      ]
+    },
+    {
+      "group": "Components",
+      "pages": [
+        "content/components/accordions",
+        "content/components/accordion-groups",
+        "content/components/callouts",
+        "content/components/cards",
+        "content/components/card-groups",
+        "content/components/code",
+        "content/components/code-groups",
+        "content/components/frames",
+        "content/components/icons",
+        "content/components/mermaid-diagrams",
+        "content/components/steps",
+        "content/components/tabs",
+        "content/components/tooltips",
+        "content/components/update"
+      ]
+    },
+    {
+      "group": "API Components",
+      "pages": [
+        "content/components/params",
+        "content/components/responses",
+        "content/components/expandables",
+        "content/components/sticky-examples"
+      ]
+    },
+    {
+      "group": "Changelog",
+      "pages": [
+        "changelog/overview"
       ]
     }
   ],
-  "footerSocials": {
-    "x": "https://x.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://linkedin.com/company/mintlify"
+  "footer": {
+    "socials": {
+      "x": "https://x.com/mintlify",
+      "linkedin": "https://www.linkedin.com/company/mintlify",
+      "github": "https://github.com/mintlify",
+      "slack": "https://mintlify.com/community"
+    },
+    "links": [
+      {
+        "title": "Resources",
+        "links": [
+          {
+            "label": "Customers",
+            "url": "https://mintlify.com/customers"
+          },
+          {
+            "label": "Enterprise",
+            "url": "https://mintlify.com/enterprise"
+          },
+          {
+            "label": "Request Preview",
+            "url": "https://mintlify.com/preview"
+          },
+          {
+            "label": "Integrations",
+            "url": "https://mintlify.com/docs/integrations/analytics/overview"
+          },
+          {
+            "label": "Templates",
+            "url": "https://github.com/mintlify/themes"
+          },
+          {
+            "label": "Wall of Love",
+            "url": "https://mintlify.com/love"
+          }
+        ]
+      },
+      {
+        "title": "Company",
+        "links": [
+          {
+            "label": "Careers",
+            "url": "https://mintlify.com/careers"
+          },
+          {
+            "label": "Blog",
+            "url": "https://mintlify.com/blog"
+          },
+          {
+            "label": "Public Roadmap",
+            "url": "https://feedback.mintlify.com/roadmap"
+          },
+          {
+            "label": "Security",
+            "url": "https://mintlify.com/security/responsible-disclosure"
+          }
+        ]
+      },
+      {
+        "title": "Legal",
+        "links": [
+          {
+            "label": "Privacy Policy",
+            "url": "https://mintlify.com/legal/privacy"
+          },
+          {
+            "label": "Terms of Service",
+            "url": "https://mintlify.com/legal/terms"
+          }
+        ]
+      }
+    ]
+  },
+  "analytics": {
+    "ga4": {
+      "measurementId": "G-RCYWHL7EQ7"
+    },
+    "koala": {
+      "publicApiKey": "pk_76a6caa274e800f3ceff0b2bc6b9b9d82ab8"
+    }
   }
 }
