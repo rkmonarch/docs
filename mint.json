@@ -79,7 +79,7 @@
     },
     {
       "group": "API Components",
-      "pages": ["api/quickstart"]
+      "pages": ["api/components/quickstart"]
     }
   ],
   "footer": {
