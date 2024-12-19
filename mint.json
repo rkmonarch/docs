@@ -80,8 +80,15 @@
      {
       "group": "BG",
       "pages": [
-        "examples/components/example-1"
+        "examples/components/example-1",
+        "examples/components/example-2"
       ]
+    },
+    {
+    "group": "Third Entry",
+    "pages": [
+    "third/components/first"
+    ]
     },
     {
       "group": "API Components",
