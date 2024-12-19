@@ -90,6 +90,12 @@
     "third/components/first"
     ]
     },
+     {
+    "group": "developer 2",
+    "pages": [
+    "content/components/first"
+    ]
+    },
     {
       "group": "API Components",
       "pages": ["api-reference/components/rahul"]
