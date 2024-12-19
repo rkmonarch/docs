@@ -52,7 +52,7 @@
     },
     {
       "name": "API Components",
-      "url": "api"
+      "url": "api-reference"
     }
   ],
   "navigation": [
@@ -79,7 +79,7 @@
     },
     {
       "group": "API Components",
-      "pages": ["api/components/rahul"]
+      "pages": ["api-reference/components/rahul"]
     }
   ],
   "footer": {
