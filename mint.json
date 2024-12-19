@@ -47,7 +47,7 @@
       "url": "quickstart"
     },
     {
-      "name": "Components",
+      "name": "Developers",
       "url": "content"
     },
     {
@@ -71,7 +71,7 @@
       ]
     },
     {
-      "group": "Components",
+      "group": "Developers",
       "pages": [
         "content/components/accordions",
         "content/components/accordion-groups"
@@ -79,7 +79,7 @@
     },
     {
       "group": "API Components",
-      "pages": ["api/components/quickstart"]
+      "pages": ["api/components/rahul"]
     }
   ],
   "footer": {
