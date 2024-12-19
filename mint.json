@@ -60,7 +60,6 @@
       "group": "Getting Started",
       "pages": [
         "quickstart",
-        "examples",
         {
           "group": "Editing",
           "icon": "pen-paintbrush",
@@ -76,6 +75,12 @@
       "pages": [
         "content/components/accordions",
         "content/components/accordion-groups"
+      ]
+    },
+     {
+      "group": "BG",
+      "pages": [
+        "examples/components/example-1"
       ]
     },
     {
