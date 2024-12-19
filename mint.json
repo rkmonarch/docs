@@ -60,6 +60,7 @@
       "group": "Getting Started",
       "pages": [
         "quickstart",
+        "examples",
         {
           "group": "Editing",
           "icon": "pen-paintbrush",
