@@ -8,13 +8,15 @@
 APRO has chosen SOON as their first SVM (Solana Virtual Machine) chain to support oracle services, marking a significant milestone in expanding their cross-chain oracle capabilities.
 </Note>
 
-<Frame>
-  <img className="block rounded-md" src="/images/apro.png" />
-</Frame>
-
 ### Overview
 
 APRO is building a secure platform by combining **off-chain processing** with **on-chain verification**, extending both data access and computational capabilities. This forms the foundation of **APRO Data Service**, improving data accuracy and efficiency while offering the flexibility to create custom solutions tailored to the specific needs of DApp businesses.
+
+<Frame>
+  <div className="my-8">
+    <img src="/api/soon/oracle-flow.svg" alt="APRO Oracle Data Flow" className="w-full" />
+  </div>
+</Frame>
 
 APRO Data Service supports two data models—**Data Push** and **Data Pull**—that deliver real-time Price Feeds and other essential data services, ensuring comprehensive support for all DApp business scenarios. Currently, they support 161 Price Feed services across 15 major blockchain networks.
 
@@ -43,21 +45,62 @@ APRO Data Service supports two data models—**Data Push** and **Data Pull**—t
 
 ### Program IDs
 
-| Description | Devnet | Testnet |
-|------------|---------|----------|
-| Apro_SVM_Oracle | `4Mvy4RKRyJMf4PHavvGUuTj9agoddUZ9atQoFma1tyMY` | Coming soon |
-| Sample_Client | `HUJ8ouH6fVonhF1hPV6ENoLid5nbHfyZSpvfujw6X6Hm` | Coming soon |
+<Note>
+  These are the program IDs for APRO Oracle integration:
+</Note>
+
+<div className="not-prose">
+  <table className="border-collapse w-full">
+    <thead className="bg-gray-100">
+      <tr>
+        <th className="border border-gray-300 px-4 py-2 text-left">Description</th>
+        <th className="border border-gray-300 px-4 py-2 text-left">Devnet</th>
+        <th className="border border-gray-300 px-4 py-2 text-left">Testnet</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td className="border border-gray-300 px-4 py-2">Apro_SVM_Oracle</td>
+        <td className="border border-gray-300 px-4 py-2 font-mono text-sm">`4Mvy4RKRyJMf4PHavvGUuTj9agoddUZ9atQoFma1tyMY`</td>
+        <td className="border border-gray-300 px-4 py-2">Coming soon</td>
+      </tr>
+      <tr>
+        <td className="border border-gray-300 px-4 py-2">Sample_Client</td>
+        <td className="border border-gray-300 px-4 py-2 font-mono text-sm">`HUJ8ouH6fVonhF1hPV6ENoLid5nbHfyZSpvfujw6X6Hm`</td>
+        <td className="border border-gray-300 px-4 py-2">Coming soon</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 ### Authentication
 
 #### Headers
 
-All routes require the following two headers for user authentication:
+<Note>
+  All routes require the following two headers for user authentication:
+</Note>
 
-| Header | Description |
-|--------|-------------|
-| Authorization | The user's unique identifier, provided as a UUID (Universally Unique IDentifier). |
-| X-Authorization-Timestamp | The current timestamp, with precision up to milliseconds. The timestamp must closely synchronize with the server time, allowing a maximum discrepancy of 5 seconds (by default). |
+<div className="not-prose">
+  <table className="border-collapse w-full">
+    <thead className="bg-gray-100">
+      <tr>
+        <th className="border border-gray-300 px-4 py-2 text-left">Header</th>
+        <th className="border border-gray-300 px-4 py-2 text-left">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td className="border border-gray-300 px-4 py-2 font-mono text-sm">Authorization</td>
+        <td className="border border-gray-300 px-4 py-2">The user's unique identifier, provided as a UUID (Universally Unique IDentifier).</td>
+      </tr>
+      <tr>
+        <td className="border border-gray-300 px-4 py-2 font-mono text-sm">X-Authorization-Timestamp</td>
+        <td className="border border-gray-300 px-4 py-2">The current timestamp, with precision up to milliseconds. The timestamp must closely synchronize with the server time, allowing a maximum discrepancy of 5 seconds (by default).</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 ### API endpoints
 
@@ -65,9 +108,24 @@ All routes require the following two headers for user authentication:
 
 **Endpoint**: `/api/soon/reports`
 
-| Type | Description | Parameter(s) |
-|------|-------------|--------------|
-| HTTP GET | Returns a single report for a given timestamp. | • feedID: A Data Streams feed ID<br/>• timestamp: The Unix timestamp for the report |
+<div className="not-prose">
+  <table className="border-collapse w-full">
+    <thead className="bg-gray-100">
+      <tr>
+        <th className="border border-gray-300 px-4 py-2 text-left">Type</th>
+        <th className="border border-gray-300 px-4 py-2 text-left">Description</th>
+        <th className="border border-gray-300 px-4 py-2 text-left">Parameter(s)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td className="border border-gray-300 px-4 py-2">HTTP GET</td>
+        <td className="border border-gray-300 px-4 py-2">Returns a single report for a given timestamp.</td>
+        <td className="border border-gray-300 px-4 py-2">• feedID: A Data Streams feed ID<br/>• timestamp: The Unix timestamp for the report</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 **Sample request**:
 ```bash
