@@ -1,0 +1,66 @@
+### getBlockCommitment RPC Method
+Returns commitment for a particular block
+
+<div className="grid grid-cols-2 gap-1 mt-2">
+  <div className="col-span-1">
+    #### Parameters
+    `u64` **required**\
+    Block number, identified by Slot
+
+    `object` **optional**\
+    Configuration object (currently no additional configuration options)
+  </div>
+  <div className="col-span-1">
+    #### Code Sample
+    ```bash
+    curl https://rpc.testnet.soo.network/rpc -X POST -H "Content-Type: application/json" -d '{
+      "jsonrpc": "2.0",
+      "id": 1,
+      "method": "getBlockCommitment",
+      "params": [369624]
+    }'
+    ```
+
+    #### Execution
+    To execute the request, copy the code sample above and run it in your terminal:
+    ```bash
+    # Copy the entire curl command above and paste it in your terminal
+    # Alternatively, you can directly run this command:
+    curl https://rpc.testnet.soo.network/rpc -X POST -H "Content-Type: application/json" -d '{
+      "jsonrpc": "2.0",
+      "id": 1,
+      "method": "getBlockCommitment",
+      "params": [369624]
+    }'
+    ```
+  </div>
+</div>
+
+#### Response Example
+```json
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "commitment": [
+      100000000,
+      200000000,
+      300000000,
+      400000000
+    ],
+    "totalStake": 500000000
+  },
+  "id": 1
+}
+```
+
+#### Result
+The result will be a JSON object containing:
+* `commitment` - Commitment of the block, which can be:
+  * `<null>` - Unknown block
+  * `<array>` - An array of u64 integers representing the cluster stake in lamports that has voted on the block at each depth from 0 to `MAX_LOCKOUT_HISTORY` + 1
+* `totalStake` - Total active stake in lamports for the current epoch
+
+#### Notes
+- The commitment array shows the cumulative stake that has voted on the block at different depths
+- Each element represents the total stake (in lamports) that has confirmed the block at that specific depth
+- The total stake provides context about the network's current staking distribution
