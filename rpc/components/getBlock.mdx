@@ -1,0 +1,122 @@
+### getBlock RPC Method
+Returns identity and transaction information about a confirmed block in the ledger.
+
+<div className="grid grid-cols-2 gap-1 mt-2">
+<div className="col-span-1">
+
+#### Parameters
+`u64` **required**  
+Slot number, as u64 integer
+
+`object` **optional**  
+Configuration object containing the following fields:
+
+**commitment** `string` **optional**  
+Default: `finalized`  
+*Note: processed is not supported.*
+
+**encoding** `string` **optional**  
+Default: `json`  
+Encoding format for each returned Transaction
+
+**Values:**
+- `json`
+- `jsonParsed`
+- `base58`
+- `base64`
+
+**transactionDetails** `string` **optional**  
+Default: `full`  
+Level of transaction detail to return
+
+**Values:**
+- `full`
+- `accounts`
+- `signatures`
+- `none`
+
+**maxSupportedTransactionVersion** `number` **optional**  
+The max transaction version to return in responses
+
+**rewards** `bool` **optional**  
+Whether to populate the rewards array. Default includes rewards.
+
+</div>
+<div className="col-span-1">
+
+#### Code Sample
+```bash
+curl https://rpc.testnet.soo.network/rpc -X POST -H "Content-Type: application/json" -d '{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "getBlock",
+  "params": [
+    369624,
+    {
+      "encoding": "json",
+      "transactionDetails": "full",
+      "rewards": true,
+      "commitment": "finalized"
+    }
+  ]
+}'
+```
+
+#### Response
+```json
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "blockhash": "6dRnxBGavrfCyKRwfkdwBWxVwwBpwx4ZJpca6K5bbLYo",
+    "previousBlockhash": "6dRnxBGavrfCyKRwfkdwBWxVwwBpwx4ZJpca6K5bbLYo",
+    "parentSlot": 369623,
+    "transactions": [
+      {
+        "transaction": {
+          "message": {
+            "accountKeys": ["6dRnxBGavrfCyKRwfkdwBWxVwwBpwx4ZJpca6K5bbLYo"],
+            "header": {
+              "numRequiredSignatures": 1,
+              "numReadonlySignedAccounts": 0,
+              "numReadonlyUnsignedAccounts": 1
+            },
+            "recentBlockhash": "6dRnxBGavrfCyKRwfkdwBWxVwwBpwx4ZJpca6K5bbLYo"
+          },
+          "signatures": ["sig"]
+        },
+        "meta": {
+          "err": null,
+          "fee": 5000,
+          "postBalances": [1000000000],
+          "preBalances": [1000000000],
+          "status": { "Ok": null }
+        }
+      }
+    ],
+    "blockTime": 1234567890,
+    "blockHeight": 369624
+  },
+  "id": 1
+}
+```
+
+</div>
+</div>
+
+#### Result
+The result field will be an object with the following fields:
+
+- `<null>` - if specified block is not confirmed
+- `<object>` - if block is confirmed, an object with the following fields:
+  - `blockhash: <string>` - the blockhash of this block
+  - `previousBlockhash: <string>` - the blockhash of this block's parent
+  - `parentSlot: <u64>` - the slot index of this block's parent
+  - `transactions: <array>` - array of transaction objects containing:
+    - `transaction: <object|[string,encoding]>` - Transaction object
+    - `meta: <object>` - Transaction status metadata:
+      - `err: <object|null>` - Error if transaction failed
+      - `fee: <u64>` - Transaction fee
+      - `preBalances: <array>` - Pre-transaction balances
+      - `postBalances: <array>` - Post-transaction balances
+  - `blockTime: <i64|null>` - estimated production time (Unix timestamp)
+  - `blockHeight: <u64|null>` - number of blocks beneath this block
