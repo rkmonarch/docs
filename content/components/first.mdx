@@ -11,19 +11,20 @@ Following process chart is how pull mode works:
 ### Program IDs
 
 | <span className="text-blue-600 font-semibold">Description</span> | <span className="text-blue-600 font-semibold">Devnet</span> | <span className="text-blue-600 font-semibold">Testnet</span> |
-|------------|---------|----------|
-| Apro_SVM_Oracle | 4Mvy4RKRyJMf4PHavvGUuTj9agoddUZ9atQoFma1tyMY | Coming soon |
-| Sample_Client | HUJ8ouH6fVonhF1hPV6ENoLid5nbHfyZSpvfujw6X6Hm | Coming soon |
+| ---------------------------------------------------------------- | ----------------------------------------------------------- | ------------------------------------------------------------ |
+| Apro\_SVM\_Oracle                                                | 4Mvy4RKRyJMf4PHavvGUuTj9agoddUZ9atQoFma1tyMY                | Coming soon                                                  |
+| Sample\_Client                                                   | HUJ8ouH6fVonhF1hPV6ENoLid5nbHfyZSpvfujw6X6Hm                | Coming soon                                                  |
 
 ### Authentication
 
 #### Headers
+
 All routes require the following two headers for user authentication:
 
-| <span className="text-blue-600 font-semibold">Header</span> | <span className="text-blue-600 font-semibold">Description</span> |
-|--------|-------------|
-| Authorization | The user's unique identifier, provided as a UUID (Universally Unique IDentifier). |
-| X-Authorization-Timestamp | The current timestamp, with precision up to milliseconds. The timestamp must closely synchronize with the server time, allowing a maximum discrepancy of 5 seconds (by default). |
+| <span className="text-blue-600 font-semibold">Header</span> | <span className="text-blue-600 font-semibold">Description</span>                                                                                                                 |
+| ----------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Authorization                                               | The user's unique identifier, provided as a UUID (Universally Unique IDentifier).                                                                                                |
+| X-Authorization-Timestamp                                   | The current timestamp, with precision up to milliseconds. The timestamp must closely synchronize with the server time, allowing a maximum discrepancy of 5 seconds (by default). |
 
 ### API endpoints
 
@@ -31,17 +32,19 @@ All routes require the following two headers for user authentication:
 
 **Endpoint**: `/api/soon/reports`
 
-| <span className="text-blue-600 font-semibold">Type</span> | <span className="text-blue-600 font-semibold">Description</span> | <span className="text-blue-600 font-semibold">Parameter(s)</span> |
-|------|-------------|--------------|
-| HTTP GET | Returns a single report for a given timestamp. | • feedID: A Data Streams feed ID<br/>• timestamp: The Unix timestamp for the report |
+| <span className="text-blue-600 font-semibold">Type</span> | <span className="text-blue-600 font-semibold">Description</span> | <span className="text-blue-600 font-semibold">Parameter(s)</span>                    |
+| --------------------------------------------------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| HTTP GET                                                  | Returns a single report for a given timestamp.                   | • feedID: A Data Streams feed ID<br />• timestamp: The Unix timestamp for the report |
 
 **Sample request**:
+
 ```
 GET /api/soon/reports?feedID=<feedID>&timestamp=<timestamp>
 ```
 
 **Sample response**:
-```json
+
+````json
 {
   "report": {
     "configDigest": "00067f925361b2ab26a59cc1997a5c064b3eeb4c9c39262caaf616b42d1ad132",
@@ -63,100 +66,50 @@ GET /api/soon/reports?feedID=<feedID>&timestamp=<timestamp>
     "recovery_ids": [1, 1]
   }
 }
-```**Sample response**:
-```json
-{
-  "bitcoin": {
-    "report": {
-      "configDigest": "00067f925361b2ab26a59cc1997a5c064b3eeb4c9c39262caaf616b42d1ad132",
-      "epochAndRound": 41829397,
-      "extraHash": "0000000000000000000000000000000000000000000000000000000000000000",
-      "feedID": "0x0003665949c883f9e0f6f002eac32e00bd59dfe6c34e92a91c37d6a8322d6489",
-      "validFromTimestamp": 1734670239,
-      "observationsTimestamp": 1734670239,
-      "nativeFee": "3583841110000",
-      "tokenFee": "350000000000000000",
-      "expireAt": 1734756639,
-      "benchmarkPrice": "97667919100000000000000",
-      "askPrice": "97668263300000000000000",
-      "bidPrice": "97667284900000000000000",
-      "signatures": [
-        "292b2b1eb9a819ac404b560c1d535bb326af210ceea9be28bfd6301394bbead47222c391206f7f0ee0d13a776554519e3c80dfc9a716f57fd414b7c1b0c71cfb",
-        "630bec284feac66cd70e4cf91d7990a99288175e14c36ff5dd8ae1b748f8ce26599e503fdd4265ef2ae119cf5ad567bfe828d3dcb0b20e55e4e4d5f9c060ac44"
-      ],
-      "recovery_ids": [1, 1]
-    }
-  },
-  "ethereum": {
-    "report": {
-      "configDigest": "00060ff11aba5e4b3b494a87988dab392c8c8521291610b8636e03e6666e7c49",
-      "epochAndRound": 41804309,
-      "extraHash": "0000000000000000000000000000000000000000000000000000000000000000",
-      "feedID": "0x0003555ace6b39aae1b894097d0a9fc17f504c62fea598fa206cc6f5088e6e45",
-      "validFromTimestamp": 1734670239,
-      "observationsTimestamp": 1734670239,
-      "nativeFee": "3583466290300",
-      "tokenFee": "350000000000000000",
-      "expireAt": 1734756639,
-      "benchmarkPrice": "3422340000000000000000",
-      "askPrice": "3422531000000000000000",
-      "bidPrice": "3422169500000000000000",
-      "signatures": [
-        "907e43eac2832d69f94adccd633d3c2c0a8df277f12b95d40a0bcb27c9a015ac18400c4912e3a18e7defcdb1e9863ebd714a2ed11824eca6c05627c79a0032cb",
-        "5cb14e3a2b79d60aa7e5f124d66e474e462eed2f03a35fe33edeaf22309a101871b06bed35b82bf6ff22c9b7a198dd11c1774ef4e15b55d20b1933a26c32133a"
-      ],
-      "recovery_ids": [1, 0]
-    }
-  },
-  "timestamp": 1734670239
-}
-```
+````
 
 #### Return a single report with the latest timestamp
 
 **Endpoint**: `/api/soon/reports/latest`
 
-| Type | Parameter(s) |
-|------|--------------|
+| Type     | Parameter(s)                   |
+| -------- | ------------------------------ |
 | HTTP GET | feedID: A Data Streams feed ID |
 
 **Sample request**:
+
 ```
 GET /api/soon/reports/latest?feedID=<feedID>
 ```
-
-
 
 #### Return a report for multiple FeedIDs at a given timestamp
 
 **Endpoint**: `/api/soon/reports/bulk`
 
-| Type | Description | Parameter(s) |
-|------|-------------|--------------|
-| HTTP GET | Return a report for multiple FeedIDs at a given timestamp. | • feedIDs: A comma-separated list of Data Streams feed IDs<br/>• timestamp: The Unix timestamp for the reports<br/>• startTimestamp: The Unix timestamp for the first report |
+| Type     | Description                                                | Parameter(s)                                                                                                                                                                   |
+| -------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| HTTP GET | Return a report for multiple FeedIDs at a given timestamp. | • feedIDs: A comma-separated list of Data Streams feed IDs<br />• timestamp: The Unix timestamp for the reports<br />• startTimestamp: The Unix timestamp for the first report |
 
 **Sample request**:
+
 ```
 GET /api/soon/reports/bulk?feedIDs=<FeedID1>,<FeedID2>,...&timestamp=<timestamp>
 GET /api/soon/reports/bulk?feedIDs=<FeedID1>,<FeedID2>,...&startTimestamp=<startTimestamp>
 ```
 
-
-
 #### Return multiple sequential reports for a single FeedID, starting at a given timestamp
 
 **Endpoint**: `/api/soon/reports/page`
 
-| Type | Description | Parameter(s) |
-|------|-------------|--------------|
-| HTTP GET | Return multiple sequential reports for a single FeedID, starting at a given timestamp. | • feedID: A Data Streams feed ID<br/>• startTimestamp: The Unix timestamp for the first report<br/>• limit (optional): The number of reports to return |
+| Type     | Description                                                                            | Parameter(s)                                                                                                                                             |
+| -------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| HTTP GET | Return multiple sequential reports for a single FeedID, starting at a given timestamp. | • feedID: A Data Streams feed ID<br />• startTimestamp: The Unix timestamp for the first report<br />• limit (optional): The number of reports to return |
 
 **Sample request**:
+
 ```
 GET /api/soon/reports/page?feedID=<FeedID>&startTimestamp=<StartTimestamp>&limit=<Limit>
 ```
-
-
 
 ### WebSocket Connection
 
@@ -164,22 +117,21 @@ Establish a streaming WebSocket connection that sends reports for the given feed
 
 **Endpoint**: `/api/soon/ws`
 
-| Type | Parameter(s) |
-|------|--------------|
+| Type      | Parameter(s)                                             |
+| --------- | -------------------------------------------------------- |
 | WebSocket | feedIDs: A comma-separated list of Data Streams feed IDs |
 
 **Sample request**:
+
 ```
 GET /api/soon/ws?feedIDs=<feedID1>,<feedID2>,...
 ```
 
-
-
 ### Error response codes
 
-| <span className="text-blue-600 font-semibold">Status Code</span> | <span className="text-blue-600 font-semibold">Description</span> |
-|-------------|-------------|
-| 400 Bad Request | This error is triggered when:<br/>• There is any missing/malformed query argument<br/>• Required headers are missing or provided with incorrect values |
-| 401 Unauthorized User | This error is triggered when:<br/>• Authentication fails, typically because the HMAC signature provided by the client doesn't match the one expected by the server<br/>• A user requests access to a feed without the appropriate permission or that does not exist |
-| 500 Internal Server | Indicates an unexpected condition encountered by the server, preventing it from fulfilling the request. This error typically points to issues on the server side. |
-| 206 Missing data (/bulk endpoint only) | Indicates that at least one feed ID data is missing from the report. E.g., you requested a report for feed IDs \`feedID1\`, \`feedID2\`, and \`feedID3\` at a given timestamp. If data for \`feedID2\` is missing from the report (not available yet at the specified timestamp), you get [\`feedID1 data\`, \`feedID3 data\`] and a 206 response. |
+| <span className="text-blue-600 font-semibold">Status Code</span> | <span className="text-blue-600 font-semibold">Description</span>                                                                                                                                                                                                                                                                                    |
+| ---------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 400 Bad Request                                                  | This error is triggered when:<br />• There is any missing/malformed query argument<br />• Required headers are missing or provided with incorrect values                                                                                                                                                                                            |
+| 401 Unauthorized User                                            | This error is triggered when:<br />• Authentication fails, typically because the HMAC signature provided by the client doesn't match the one expected by the server<br />• A user requests access to a feed without the appropriate permission or that does not exist                                                                               |
+| 500 Internal Server                                              | Indicates an unexpected condition encountered by the server, preventing it from fulfilling the request. This error typically points to issues on the server side.                                                                                                                                                                                   |
+| 206 Missing data (/bulk endpoint only)                           | Indicates that at least one feed ID data is missing from the report. E.g., you requested a report for feed IDs \`feedID1\`, \`feedID2\`, and \`feedID3\` at a given timestamp. If data for \`feedID2\` is missing from the report (not available yet at the specified timestamp), you get \[\`feedID1 data\`, \`feedID3 data\`] and a 206 response. |
