@@ -89,7 +89,8 @@
      "rpc/components/getAccountInfo",
      "rpc/components/getBalance",
      "rpc/components/getBlock",
-     "rpc/components/getBlockCommitment"
+     "rpc/components/getBlockCommitment",
+     "rpc/components/getBlockHeight"
     ]
     },
      {
