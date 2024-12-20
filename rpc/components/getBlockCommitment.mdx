@@ -17,17 +17,6 @@ Returns commitment for a particular block in the ledger.
     #### Code Sample
 
     ```bash
-    curl https://rpc.testnet.soo.network/rpc -X POST -H "Content-Type: application/json" -d '{
-      "jsonrpc": "2.0",
-      "id": 1,
-      "method": "getBlockCommitment",
-      "params": [369624]
-    }'
-    ```
-
-    Or with formatted JSON for better readability:
-
-    ```bash
     curl https://rpc.testnet.soo.network/rpc \
     -X POST \
     -H "Content-Type: application/json" \
