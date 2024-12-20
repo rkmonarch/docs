@@ -5,7 +5,7 @@
 ## About APRO
 
 <Note>
-  APRO has chosen SOON as their first SVM (Solana Virtual Machine) chain to support oracle services, marking a significant milestone in expanding their cross-chain oracle capabilities.
+APRO has chosen SOON as their first SVM (Solana Virtual Machine) chain to support oracle services, marking a significant milestone in expanding their cross-chain oracle capabilities.
 </Note>
 
 ### Overview
@@ -13,38 +13,33 @@
 APRO is building a secure platform by combining **off-chain processing** with **on-chain verification**, extending both data access and computational capabilities. This forms the foundation of **APRO Data Service**, improving data accuracy and efficiency while offering the flexibility to create custom solutions tailored to the specific needs of DApp businesses.
 
 <Frame>
-  <img className="block rounded-md" src="/images/apro.png" />
+  <div className="my-8">
+    <img src="/api/soon/oracle-flow.svg" alt="APRO Oracle Data Flow" className="w-full" />
+  </div>
 </Frame>
 
 APRO Data Service supports two data models—**Data Push** and **Data Pull**—that deliver real-time Price Feeds and other essential data services, ensuring comprehensive support for all DApp business scenarios. Currently, they support 161 Price Feed services across 15 major blockchain networks.
 
 ### Data Service Models
 
-* **Data Push**: Uses a "Push-Based" data model where decentralized independent node operators continuously gather and push data updates to the blockchain when certain price thresholds or time intervals are met. This improves blockchain scalability and provides timely updates.
+- **Data Push**: Uses a "Push-Based" data model where decentralized independent node operators continuously gather and push data updates to the blockchain when certain price thresholds or time intervals are met. This improves blockchain scalability and provides timely updates.
 
-* **Data Pull**: Uses a "Pull-Based" data model to deliver real-time Price Feed services to dApps. Designed for on-demand access, high-frequency updates, low latency, and cost-effective integration, making it ideal for DeFi protocols and decentralized exchanges.
+- **Data Pull**: Uses a "Pull-Based" data model to deliver real-time Price Feed services to dApps. Designed for on-demand access, high-frequency updates, low latency, and cost-effective integration, making it ideal for DeFi protocols and decentralized exchanges.
 
 ### Key Benefits
 
 1. **Combined Off-Chain & On-Chain Architecture**
-
-   * Integrates off-chain computing with on-chain verification
-
-   * Extends computing capabilities while ensuring system security
+   - Integrates off-chain computing with on-chain verification
+   - Extends computing capabilities while ensuring system security
 
 2. **Customizable Computing Logic**
-
-   * DApp businesses can implement custom computing logic
-
-   * Secure business logic processing without compromising security
+   - DApp businesses can implement custom computing logic
+   - Secure business logic processing without compromising security
 
 3. **Enhanced Security Features**
-
-   * Hybrid node approach combining on-chain and off-chain resources
-
-   * Multi-network communication scheme to prevent single-point failures
-
-   * TVWAP price discovery mechanism for fair and accurate data
+   - Hybrid node approach combining on-chain and off-chain resources
+   - Multi-network communication scheme to prevent single-point failures
+   - TVWAP price discovery mechanism for fair and accurate data
 
 ## Integration Guide
 
@@ -63,16 +58,14 @@ APRO Data Service supports two data models—**Data Push** and **Data Pull**—t
         <th className="border border-gray-300 px-4 py-2 text-left">Testnet</th>
       </tr>
     </thead>
-
     <tbody>
       <tr>
-        <td className="border border-gray-300 px-4 py-2">Apro\_SVM\_Oracle</td>
+        <td className="border border-gray-300 px-4 py-2">Apro_SVM_Oracle</td>
         <td className="border border-gray-300 px-4 py-2 font-mono text-sm">`4Mvy4RKRyJMf4PHavvGUuTj9agoddUZ9atQoFma1tyMY`</td>
         <td className="border border-gray-300 px-4 py-2">Coming soon</td>
       </tr>
-
       <tr>
-        <td className="border border-gray-300 px-4 py-2">Sample\_Client</td>
+        <td className="border border-gray-300 px-4 py-2">Sample_Client</td>
         <td className="border border-gray-300 px-4 py-2 font-mono text-sm">`HUJ8ouH6fVonhF1hPV6ENoLid5nbHfyZSpvfujw6X6Hm`</td>
         <td className="border border-gray-300 px-4 py-2">Coming soon</td>
       </tr>
@@ -96,13 +89,11 @@ APRO Data Service supports two data models—**Data Push** and **Data Pull**—t
         <th className="border border-gray-300 px-4 py-2 text-left">Description</th>
       </tr>
     </thead>
-
     <tbody>
       <tr>
         <td className="border border-gray-300 px-4 py-2 font-mono text-sm">Authorization</td>
         <td className="border border-gray-300 px-4 py-2">The user's unique identifier, provided as a UUID (Universally Unique IDentifier).</td>
       </tr>
-
       <tr>
         <td className="border border-gray-300 px-4 py-2 font-mono text-sm">X-Authorization-Timestamp</td>
         <td className="border border-gray-300 px-4 py-2">The current timestamp, with precision up to milliseconds. The timestamp must closely synchronize with the server time, allowing a maximum discrepancy of 5 seconds (by default).</td>
@@ -126,25 +117,22 @@ APRO Data Service supports two data models—**Data Push** and **Data Pull**—t
         <th className="border border-gray-300 px-4 py-2 text-left">Parameter(s)</th>
       </tr>
     </thead>
-
     <tbody>
       <tr>
         <td className="border border-gray-300 px-4 py-2">HTTP GET</td>
         <td className="border border-gray-300 px-4 py-2">Returns a single report for a given timestamp.</td>
-        <td className="border border-gray-300 px-4 py-2">• feedID: A Data Streams feed ID<br />• timestamp: The Unix timestamp for the report</td>
+        <td className="border border-gray-300 px-4 py-2">• feedID: A Data Streams feed ID<br/>• timestamp: The Unix timestamp for the report</td>
       </tr>
     </tbody>
   </table>
 </div>
 
 **Sample request**:
-
 ```bash
 GET /api/soon/reports?feedID=<feedID>&timestamp=<timestamp>
 ```
 
 **Sample response**:
-
 ```json
 {
   "report": {
@@ -173,12 +161,11 @@ GET /api/soon/reports?feedID=<feedID>&timestamp=<timestamp>
 
 **Endpoint**: `/api/soon/reports/latest`
 
-| Type     | Parameter(s)                   |
-| -------- | ------------------------------ |
+| Type | Parameter(s) |
+|------|--------------|
 | HTTP GET | feedID: A Data Streams feed ID |
 
 **Sample request**:
-
 ```bash
 GET /api/soon/reports/latest?feedID=<feedID>
 ```
@@ -187,12 +174,11 @@ GET /api/soon/reports/latest?feedID=<feedID>
 
 **Endpoint**: `/api/soon/reports/bulk`
 
-| Type     | Description                                                | Parameter(s)                                                                                                                                                                   |
-| -------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| HTTP GET | Return a report for multiple FeedIDs at a given timestamp. | • feedIDs: A comma-separated list of Data Streams feed IDs<br />• timestamp: The Unix timestamp for the reports<br />• startTimestamp: The Unix timestamp for the first report |
+| Type | Description | Parameter(s) |
+|------|-------------|--------------|
+| HTTP GET | Return a report for multiple FeedIDs at a given timestamp. | • feedIDs: A comma-separated list of Data Streams feed IDs<br/>• timestamp: The Unix timestamp for the reports<br/>• startTimestamp: The Unix timestamp for the first report |
 
 **Sample request**:
-
 ```bash
 GET /api/soon/reports/bulk?feedIDs=<FeedID1>,<FeedID2>,...&timestamp=<timestamp>
 GET /api/soon/reports/bulk?feedIDs=<FeedID1>,<FeedID2>,...&startTimestamp=<startTimestamp>
@@ -202,12 +188,11 @@ GET /api/soon/reports/bulk?feedIDs=<FeedID1>,<FeedID2>,...&startTimestamp=<start
 
 **Endpoint**: `/api/soon/reports/page`
 
-| Type     | Description                                                                            | Parameter(s)                                                                                                                                             |
-| -------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| HTTP GET | Return multiple sequential reports for a single FeedID, starting at a given timestamp. | • feedID: A Data Streams feed ID<br />• startTimestamp: The Unix timestamp for the first report<br />• limit (optional): The number of reports to return |
+| Type | Description | Parameter(s) |
+|------|-------------|--------------|
+| HTTP GET | Return multiple sequential reports for a single FeedID, starting at a given timestamp. | • feedID: A Data Streams feed ID<br/>• startTimestamp: The Unix timestamp for the first report<br/>• limit (optional): The number of reports to return |
 
 **Sample request**:
-
 ```bash
 GET /api/soon/reports/page?feedID=<FeedID>&startTimestamp=<StartTimestamp>&limit=<Limit>
 ```
@@ -218,21 +203,20 @@ Establish a streaming WebSocket connection that sends reports for the given feed
 
 **Endpoint**: `/api/soon/ws`
 
-| Type      | Parameter(s)                                             |
-| --------- | -------------------------------------------------------- |
+| Type | Parameter(s) |
+|------|--------------|
 | WebSocket | feedIDs: A comma-separated list of Data Streams feed IDs |
 
 **Sample request**:
-
 ```bash
 GET /api/soon/ws?feedIDs=<feedID1>,<feedID2>,...
 ```
 
 ### Error Response Codes
 
-| Status Code         | Description                                                                                                                                                                                                               |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 400 Bad Request     | This error is triggered when:<br />• There is any missing/malformed query argument<br />• Required headers are missing or provided with incorrect values                                                                  |
-| 401 Unauthorized    | This error is triggered when:<br />• Authentication fails due to invalid HMAC signature<br />• User requests access to an unauthorized feed                                                                               |
-| 500 Internal Server | Indicates an unexpected server condition preventing request fulfillment                                                                                                                                                   |
+| Status Code | Description |
+|------------|-------------|
+| 400 Bad Request | This error is triggered when:<br/>• There is any missing/malformed query argument<br/>• Required headers are missing or provided with incorrect values |
+| 401 Unauthorized | This error is triggered when:<br/>• Authentication fails due to invalid HMAC signature<br/>• User requests access to an unauthorized feed |
+| 500 Internal Server | Indicates an unexpected server condition preventing request fulfillment |
 | 206 Partial Content | Indicates partial data availability (bulk endpoint only). Example: When requesting data for `feedID1`, `feedID2`, and `feedID3`, if `feedID2` data is unavailable, returns `[feedID1 data, feedID3 data]` with 206 status |
