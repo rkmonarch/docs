@@ -3,6 +3,7 @@
 Returns the estimated production time of a block.
 
 #### Method Information
+
 Each validator reports their UTC time to the ledger on a regular interval by intermittently adding a timestamp to a Vote for a particular block. A requested block's time is calculated from the stake-weighted mean of the Vote timestamps in a set of recent blocks recorded on the ledger.
 
 <div className="grid grid-cols-2 gap-1 mt-2">
@@ -15,17 +16,6 @@ Each validator reports their UTC time to the ledger on a regular interval by int
 
   <div className="col-span-1">
     #### Code Sample
-
-    ```bash
-    curl https://rpc.testnet.soo.network/rpc -X POST -H "Content-Type: application/json" -d '{
-      "jsonrpc": "2.0",
-      "id": 1,
-      "method": "getBlockTime",
-      "params": [369624]
-    }'
-    ```
-
-    Or with formatted JSON for better readability:
 
     ```bash
     curl https://rpc.testnet.soo.network/rpc \
@@ -56,6 +46,9 @@ Each validator reports their UTC time to the ledger on a regular interval by int
 The result will be:
 
 * `<i64>` - Estimated production time
+
   * Represented as a Unix timestamp (seconds since the Unix epoch)
+
   * Calculated from the stake-weighted mean of Vote timestamps
+
   * Provides an approximate time when the block was produced
