@@ -1,4 +1,4 @@
-# Common JSON Data Structures for SOON RPC Methods
+## Common JSON Data Structures for SOON RPC Methods
 
 Various SOON RPC methods return complex responses as structured JSON objects. Here are the most common JSON data structures you'll encounter:
 
@@ -81,16 +81,25 @@ Raw oracle observations before aggregation are structured as:
 ## Important Notes
 
 1. **Numeric Values:**
-   - Large numbers are often returned as strings to preserve precision
-   - Timestamps are in Unix format (seconds since epoch)
-   - Decimal values maintain 18 decimal places for price data
+
+   * Large numbers are often returned as strings to preserve precision
+
+   * Timestamps are in Unix format (seconds since epoch)
+
+   * Decimal values maintain 18 decimal places for price data
 
 2. **Encoding:**
-   - Addresses and hashes are hex-encoded strings
-   - Signatures are base64-encoded strings
-   - Binary data is typically base58-encoded
+
+   * Addresses and hashes are hex-encoded strings
+
+   * Signatures are base64-encoded strings
+
+   * Binary data is typically base58-encoded
 
 3. **Price Representation:**
-   - All prices include 18 decimal places
-   - Use appropriate decimal handling when displaying prices
-   - Both string and numeric representations may be provided
+
+   * All prices include 18 decimal places
+
+   * Use appropriate decimal handling when displaying prices
+
+   * Both string and numeric representations may be provided
