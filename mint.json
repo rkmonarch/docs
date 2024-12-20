@@ -85,7 +85,8 @@
     "group": "RPC",
     "pages":[
     "rpc/components/intro",
-    "rpc/components/getAccountInfo"
+    "rpc/components/getAccountInfo",
+    "rpc/components/dataStructures"
     ]
     },
      {
