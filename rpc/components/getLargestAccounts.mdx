@@ -16,6 +16,7 @@ Returns the 20 largest accounts, by lamport balance (results may be cached up to
     Filter results by account type
 
     **Allowed Filter Values:**
+
     * `circulatingNonCirculating`
   </div>
 
@@ -32,7 +33,6 @@ Returns the 20 largest accounts, by lamport balance (results may be cached up to
       "method": "getLargestAccounts",
       "params": [{
         "commitment": "finalized",
-        "filter": "circulatingNonCirculating"
       }]
     }'
     ```
@@ -64,15 +64,23 @@ Returns the 20 largest accounts, by lamport balance (results may be cached up to
 The result will be an RpcResponse JSON object with:
 
 * `value`: An array of objects, each containing:
+
   * `address: <string>`
+
     * Base-58 encoded address of the account
+
     * Uniquely identifies the account
 
   * `lamports: <u64>`
+
     * Number of lamports in the account
+
     * Represents the account's balance
 
 #### Important Notes
+
 * Returns up to 20 largest accounts
+
 * Results may be cached for up to two hours
+
 * Optional filtering available for account types
