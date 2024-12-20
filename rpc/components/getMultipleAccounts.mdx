@@ -8,6 +8,7 @@ Returns the account information for a list of Pubkeys.
 
     `array` **required**\
     An array of Pubkeys to query, as base-58 encoded strings
+
     * Maximum of 100 Pubkeys per request
 
     `object` **optional**\
@@ -21,19 +22,26 @@ Returns the account information for a list of Pubkeys.
 
     **dataSlice** `object` **optional**\
     Request a slice of the account's data
+
     * `length: <usize>` - number of bytes to return
+
     * `offset: <usize>` - byte offset from which to start reading
 
     **encoding** `string` **optional**\
     Default: `base64`
 
     **Allowed Encoding Values:**
+
     * `jsonParsed`
+
     * `base58`
+
     * `base64`
+
     * `base64+zstd`
 
     #### Data Slicing Note
+
     Data slicing is only available for `base58`, `base64`, or `base64+zstd` encodings.
   </div>
 
@@ -69,25 +77,39 @@ Returns the account information for a list of Pubkeys.
 
     ```json
     {
-      "jsonrpc": "2.0",
-      "result": {
-        "context": {
-          "slot": 369624
-        },
-        "value": [
-          {
-            "lamports": 1000000000,
-            "owner": "11111111111111111111111111111111",
-            "data": ["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "base64"],
-            "executable": false,
-            "rentEpoch": 123,
-            "space": 128
-          },
-          null
-        ]
+  "jsonrpc": "2.0",
+  "result": {
+    "context": {
+      "apiVersion": "2.0.14",
+      "slot": 376712
+    },
+    "value": [
+      {
+        "data": [
+          "",
+          "base64"
+        ],
+        "executable": false,
+        "lamports": 40958674516,
+        "owner": "11111111111111111111111111111111",
+        "rentEpoch": 18446744073709551615,
+        "space": 0
       },
-      "id": 1
-    }
+      {
+        "data": [
+          "",
+          "base64"
+        ],
+        "executable": false,
+        "lamports": 923882300,
+        "owner": "11111111111111111111111111111111",
+        "rentEpoch": 18446744073709551615,
+        "space": 0
+      }
+    ]
+  },
+  "id": 1
+}
     ```
   </div>
 </div>
@@ -99,22 +121,31 @@ The result will be a JSON object with `value` as an array containing:
 * `<null>` - If the account at the specified Pubkey doesn't exist
 
 * `<object>` - Account information, including:
+
   * `lamports: <u64>`
+
     * Number of lamports assigned to the account
-  
+
   * `owner: <string>`
+
     * Base-58 encoded Pubkey of the program owning the account
-  
+
   * `data: <[string, encoding]|object>`
+
     * Account data in specified encoding
+
     * Can be encoded binary data or parsed JSON format
-  
+
   * `executable: <bool>`
+
     * Indicates if the account contains a program
+
     * `true` means the account is read-only
-  
+
   * `rentEpoch: <u64>`
+
     * Epoch at which the account will next owe rent
-  
+
   * `space: <u64>`
+
     * Total data size of the account
