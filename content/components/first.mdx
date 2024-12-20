@@ -10,7 +10,7 @@ Following process chart is how pull mode works:
 
 ### Program IDs
 
-| Description | Devnet | Testnet |
+| <span className="text-blue-600 font-semibold">Description</span> | <span className="text-blue-600 font-semibold">Devnet</span> | <span className="text-blue-600 font-semibold">Testnet</span> |
 |------------|---------|----------|
 | Apro_SVM_Oracle | 4Mvy4RKRyJMf4PHavvGUuTj9agoddUZ9atQoFma1tyMY | Coming soon |
 | Sample_Client | HUJ8ouH6fVonhF1hPV6ENoLid5nbHfyZSpvfujw6X6Hm | Coming soon |
@@ -20,7 +20,7 @@ Following process chart is how pull mode works:
 #### Headers
 All routes require the following two headers for user authentication:
 
-| Header | Description |
+| <span className="text-blue-600 font-semibold">Header</span> | <span className="text-blue-600 font-semibold">Description</span> |
 |--------|-------------|
 | Authorization | The user's unique identifier, provided as a UUID (Universally Unique IDentifier). |
 | X-Authorization-Timestamp | The current timestamp, with precision up to milliseconds. The timestamp must closely synchronize with the server time, allowing a maximum discrepancy of 5 seconds (by default). |
@@ -31,7 +31,7 @@ All routes require the following two headers for user authentication:
 
 **Endpoint**: `/api/soon/reports`
 
-| Type | Description | Parameter(s) |
+| <span className="text-blue-600 font-semibold">Type</span> | <span className="text-blue-600 font-semibold">Description</span> | <span className="text-blue-600 font-semibold">Parameter(s)</span> |
 |------|-------------|--------------|
 | HTTP GET | Returns a single report for a given timestamp. | • feedID: A Data Streams feed ID<br/>• timestamp: The Unix timestamp for the report |
 
@@ -132,7 +132,7 @@ GET /api/soon/ws?feedIDs=<feedID1>,<feedID2>,...
 
 ### Error response codes
 
-| Status Code | Description |
+| <span className="text-blue-600 font-semibold">Status Code</span> | <span className="text-blue-600 font-semibold">Description</span> |
 |-------------|-------------|
 | 400 Bad Request | This error is triggered when:<br/>• There is any missing/malformed query argument<br/>• Required headers are missing or provided with incorrect values |
 | 401 Unauthorized User | This error is triggered when:<br/>• Authentication fails, typically because the HMAC signature provided by the client doesn't match the one expected by the server<br/>• A user requests access to a feed without the appropriate permission or that does not exist |
