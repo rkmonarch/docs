@@ -53,6 +53,10 @@
     {
       "name": "API Components",
       "url": "api-reference"
+    },
+    {
+    "name": "RPC methods",
+    "url": "rpc"
     }
   ],
   "navigation": [
@@ -77,6 +81,12 @@
         "content/components/accordion-groups"
       ]
     },
+    {
+    "group": "RPC",
+    "pages":[
+    "rpc/components/intro"
+    ]
+    }
      {
       "group": "BG",
       "pages": [
