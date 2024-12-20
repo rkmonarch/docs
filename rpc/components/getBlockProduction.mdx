@@ -1,4 +1,8 @@
-## getBlockProduction RPC Method
+# SOON RPC Methods
+
+## HTTP Methods
+
+### getBlockProduction RPC Method
 
 Returns recent block production information from the current or previous epoch.
 
@@ -30,15 +34,7 @@ Returns recent block production information from the current or previous epoch.
     curl https://rpc.testnet.soo.network/rpc -X POST -H "Content-Type: application/json" -d '{
       "jsonrpc": "2.0",
       "id": 1,
-      "method": "getBlockProduction",
-      "params": [{
-        "commitment": "finalized",
-        "identity": "5ThJTCxpdn54bk3gBAWKZS4K9ogHEX56WooYbXQDnm3Q",
-        "range": {
-          "firstSlot": 369000,
-          "lastSlot": 369624
-        }
-      }]
+      "method": "getBlockProduction"
     }'
     ```
 
@@ -51,15 +47,7 @@ Returns recent block production information from the current or previous epoch.
     -d '{
       "jsonrpc": "2.0",
       "id": 1,
-      "method": "getBlockProduction",
-      "params": [{
-        "commitment": "finalized",
-        "identity": "5ThJTCxpdn54bk3gBAWKZS4K9ogHEX56WooYbXQDnm3Q",
-        "range": {
-          "firstSlot": 369000,
-          "lastSlot": 369624
-        }
-      }]
+      "method": "getBlockProduction"
     }'
     ```
 
