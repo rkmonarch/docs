@@ -40,9 +40,9 @@ curl https://rpc.testnet.soo.network/rpc -X POST -H "Content-Type: application/j
 {
   "jsonrpc": "2.0",
   "id": 1,
-  "method": "getPrice",
+  "method": "getBalance",
   "params": [
-    "83astBRguLMdt2h5U1Tpdq5tjFoJ6noeGwaY3mDLVcri"
+    "6dRnxBGavrfCyKRwfkdwBWxVwwBpwx4ZJpca6K5bbLYo"
   ]
 }
 '
@@ -63,19 +63,17 @@ Requests can be sent in batches by sending an array of JSON-RPC request objects 
 The timestamp parameter can be included as the last element in the `params` array:
 
 ```bash
-curl https://api.soon.network -X POST -H "Content-Type: application/json" -d '
+curl https://rpc.testnet.soo.network/rpc -X POST -H "Content-Type: application/json" -d '
 {
   "jsonrpc": "2.0",
   "id": 1,
-  "method": "getPrice",
+  "method": "getBalance",
   "params": [
-    "83astBRguLMdt2h5U1Tpdq5tjFoJ6noeGwaY3mDLVcri",
+    "6dRnxBGavrfCyKRwfkdwBWxVwwBpwx4ZJpca6K5bbLYo",
     {
       "timestamp": 1734670442
     }
   ]
 }
-'
+
 ```
-
-
