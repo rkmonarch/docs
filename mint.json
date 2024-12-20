@@ -90,7 +90,8 @@
      "rpc/components/getBalance",
      "rpc/components/getBlock",
      "rpc/components/getBlockCommitment",
-     "rpc/components/getBlockHeight"
+     "rpc/components/getBlockHeight",
+     "rpc/components/getBlockProduction"
     ]
     },
      {

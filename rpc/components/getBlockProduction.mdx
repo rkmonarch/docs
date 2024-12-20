@@ -1,0 +1,103 @@
+## getBlockProduction RPC Method
+
+Returns recent block production information from the current or previous epoch.
+
+<div className="grid grid-cols-2 gap-1 mt-2">
+  <div className="col-span-1">
+    #### Parameters
+
+    `object` **optional**\
+    Configuration object containing the following fields:
+
+    **commitment** `string` **optional**\
+    The level of commitment desired when querying state
+
+    **identity** `string` **optional**\
+    Only return results for this validator identity (base-58 encoded)
+
+    **range** `object` **optional**\
+    Slot range to return block production for
+    * `firstSlot: <u64>` - first slot to return block production information for (inclusive)
+    * `lastSlot: <u64>` **optional** - last slot to return block production information for (inclusive)
+      * If not provided, defaults to the highest slot
+    * If parameter not provided, defaults to current epoch
+  </div>
+
+  <div className="col-span-1">
+    #### Code Sample
+
+    ```bash
+    curl https://rpc.testnet.soo.network/rpc -X POST -H "Content-Type: application/json" -d '{
+      "jsonrpc": "2.0",
+      "id": 1,
+      "method": "getBlockProduction",
+      "params": [{
+        "commitment": "finalized",
+        "identity": "5ThJTCxpdn54bk3gBAWKZS4K9ogHEX56WooYbXQDnm3Q",
+        "range": {
+          "firstSlot": 369000,
+          "lastSlot": 369624
+        }
+      }]
+    }'
+    ```
+
+    Or with formatted JSON for better readability:
+
+    ```bash
+    curl https://rpc.testnet.soo.network/rpc \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+      "jsonrpc": "2.0",
+      "id": 1,
+      "method": "getBlockProduction",
+      "params": [{
+        "commitment": "finalized",
+        "identity": "5ThJTCxpdn54bk3gBAWKZS4K9ogHEX56WooYbXQDnm3Q",
+        "range": {
+          "firstSlot": 369000,
+          "lastSlot": 369624
+        }
+      }]
+    }'
+    ```
+
+    #### Response
+
+    ```json
+    {
+      "jsonrpc": "2.0",
+      "result": {
+        "context": {
+          "slot": 369624
+        },
+        "value": {
+          "byIdentity": {
+            "5ThJTCxpdn54bk3gBAWKZS4K9ogHEX56WooYbXQDnm3Q": [120, 100]
+          },
+          "range": {
+            "firstSlot": 369000,
+            "lastSlot": 369624
+          }
+        }
+      },
+      "id": 1
+    }
+    ```
+  </div>
+</div>
+
+#### Result Details
+
+The result will be an RpcResponse JSON object with `value` equal to:
+
+* `byIdentity: <object>`
+  * A dictionary of validator identities (base-58 encoded strings)
+  * Each value is a two-element array:
+    * First element: number of leader slots
+    * Second element: number of blocks produced
+
+* `range: <object>`
+  * `firstSlot: <u64>` - first slot of the block production information (inclusive)
+  * `lastSlot: <u64>` - last slot of block production information (inclusive)
