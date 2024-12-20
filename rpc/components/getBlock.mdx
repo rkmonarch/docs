@@ -1,50 +1,45 @@
+# SOON RPC Methods
+
+## HTTP Methods
+
 ### getBlock RPC Method
+
 Returns identity and transaction information about a confirmed block in the ledger.
 
 <div className="grid grid-cols-2 gap-1 mt-2">
 <div className="col-span-1">
 
 #### Parameters
+
 `u64` **required**  
 Slot number, as u64 integer
 
 `object` **optional**  
 Configuration object containing the following fields:
 
-**commitment** `string` **optional**  
-Default: `finalized`  
-*Note: processed is not supported.*
+**encoding** `string` **optional**
+- Default: `json`
+- Encoding format for each returned Transaction
+- Values: `json`, `jsonParsed`, `base58`, `base64`
 
-**encoding** `string` **optional**  
-Default: `json`  
-Encoding format for each returned Transaction
+**transactionDetails** `string` **optional**
+- Default: `full`
+- Level of transaction detail to return
+- Values: `full`, `accounts`, `signatures`, `none`
 
-**Values:**
-- `json`
-- `jsonParsed`
-- `base58`
-- `base64`
+**rewards** `bool` **optional**
+- Whether to populate the rewards array
+- Default includes rewards
 
-**transactionDetails** `string` **optional**  
-Default: `full`  
-Level of transaction detail to return
-
-**Values:**
-- `full`
-- `accounts`
-- `signatures`
-- `none`
-
-**maxSupportedTransactionVersion** `number` **optional**  
-The max transaction version to return in responses
-
-**rewards** `bool` **optional**  
-Whether to populate the rewards array. Default includes rewards.
+**commitment** `string` **optional**
+- Default: `finalized`
+- Note: processed is not supported
 
 </div>
 <div className="col-span-1">
 
 #### Code Sample
+
 ```bash
 curl https://rpc.testnet.soo.network/rpc -X POST -H "Content-Type: application/json" -d '{
   "jsonrpc": "2.0",
@@ -63,38 +58,61 @@ curl https://rpc.testnet.soo.network/rpc -X POST -H "Content-Type: application/j
 ```
 
 #### Response
+
 ```json
 {
   "jsonrpc": "2.0",
   "result": {
-    "blockhash": "6dRnxBGavrfCyKRwfkdwBWxVwwBpwx4ZJpca6K5bbLYo",
-    "previousBlockhash": "6dRnxBGavrfCyKRwfkdwBWxVwwBpwx4ZJpca6K5bbLYo",
+    "blockHeight": 369624,
+    "blockTime": 1734675806,
+    "blockhash": "11111111111111111111111111111111",
     "parentSlot": 369623,
+    "previousBlockhash": "11111111111111111111111111111111",
+    "rewards": [],
     "transactions": [
       {
+        "meta": {
+          "computeUnitsConsumed": 3035,
+          "err": null,
+          "fee": 0,
+          "innerInstructions": [],
+          "loadedAddresses": {
+            "readonly": [],
+            "writable": []
+          },
+          "logMessages": [
+            "Program L1BLockinfo11111111111111111111111111111111 invoke [1]",
+            "Program log: Instruction: UpdateL1BlockInfo",
+            "Program L1BLockinfo11111111111111111111111111111111 consumed 3035 of 200000 compute units",
+            "Program L1BLockinfo11111111111111111111111111111111 success"
+          ],
+          "postBalances": [1, 95004, 57072],
+          "postTokenBalances": [],
+          "preBalances": [1, 95004, 57072],
+          "preTokenBalances": [],
+          "rewards": [],
+          "status": {"Ok": null}
+        },
         "transaction": {
           "message": {
-            "accountKeys": ["6dRnxBGavrfCyKRwfkdwBWxVwwBpwx4ZJpca6K5bbLYo"],
+            "accountKeys": [
+              "NoSigTxPayer1111111111111111111111111111111",
+              "5ThJTCxpdn54bk3gBAWKZS4K9ogHEX56WooYbXQDnm3Q",
+              "L1BLockinfo11111111111111111111111111111111"
+            ],
             "header": {
-              "numRequiredSignatures": 1,
               "numReadonlySignedAccounts": 0,
-              "numReadonlyUnsignedAccounts": 1
+              "numReadonlyUnsignedAccounts": 1,
+              "numRequiredSignatures": 1
             },
-            "recentBlockhash": "6dRnxBGavrfCyKRwfkdwBWxVwwBpwx4ZJpca6K5bbLYo"
+            "recentBlockhash": "11111111111111111111111111111111"
           },
-          "signatures": ["sig"]
-        },
-        "meta": {
-          "err": null,
-          "fee": 5000,
-          "postBalances": [1000000000],
-          "preBalances": [1000000000],
-          "status": { "Ok": null }
+          "signatures": [
+            "1111111111111758YvxNHh7sR7pt4JS6fWMn55ks1tzfsZDjoszC7jzrQjBUKkDw7W5mxz9VSZsztWNGWkf"
+          ]
         }
       }
-    ],
-    "blockTime": 1234567890,
-    "blockHeight": 369624
+    ]
   },
   "id": 1
 }
@@ -103,20 +121,19 @@ curl https://rpc.testnet.soo.network/rpc -X POST -H "Content-Type: application/j
 </div>
 </div>
 
-#### Result
-The result field will be an object with the following fields:
+#### Result Details
 
+The result field will be:
 - `<null>` - if specified block is not confirmed
-- `<object>` - if block is confirmed, an object with the following fields:
+- `<object>` - if block is confirmed, containing:
   - `blockhash: <string>` - the blockhash of this block
   - `previousBlockhash: <string>` - the blockhash of this block's parent
   - `parentSlot: <u64>` - the slot index of this block's parent
-  - `transactions: <array>` - array of transaction objects containing:
-    - `transaction: <object|[string,encoding]>` - Transaction object
-    - `meta: <object>` - Transaction status metadata:
-      - `err: <object|null>` - Error if transaction failed
-      - `fee: <u64>` - Transaction fee
-      - `preBalances: <array>` - Pre-transaction balances
-      - `postBalances: <array>` - Post-transaction balances
-  - `blockTime: <i64|null>` - estimated production time (Unix timestamp)
+  - `transactions: <array>` - array of transactions containing:
+    - `transaction: <object>` - transaction object with message and signatures
+    - `meta: <object>` - transaction metadata including:
+      - `err: <object|null>` - error if transaction failed
+      - `computeUnitsConsumed: <number>` - compute units used
+      - `logMessages: <array>` - program log messages
+  - `blockTime: <i64|null>` - estimated production time
   - `blockHeight: <u64|null>` - number of blocks beneath this block
