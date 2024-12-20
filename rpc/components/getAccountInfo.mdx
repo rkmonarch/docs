@@ -3,112 +3,91 @@
 ## HTTP Methods
 
 ### getAccountInfo RPC Method
+Returns all information associated with the account of provided Pubkey.
 
-Returns all information associated with the account of provided Pubkey
+<div className="grid grid-cols-2 gap-1 mt-2">
+<div className="col-span-1">
 
-<div className="grid grid-cols-2 gap-1">
-  <div className="col-span-1">
-    #### Parameters
+#### Parameters
+`string` **required**  
+Pubkey of account to query, as base-58 encoded string
 
-    `string` **required**\
-    Pubkey of account to query, as base-58 encoded string
+`object` **optional**  
+Configuration object containing the following fields:
 
-    `object` **optional**\
-    Configuration object containing the following fields:
+**commitment** `string` **optional**
 
-    **commitment** `string` **optional**
+**encoding** `string` **optional**  
+Encoding format for Account data
 
-    **encoding** `string` **optional**\
-    Encoding format for Account data
+**Values:**
+- `base58`
+- `base64`
+- `base64+zstd`
+- `jsonParsed`
 
-    **Values:**
+**Details:**
+- `base58` is slow and limited to less than 129 bytes of Account data
+- `base64` will return base64 encoded data for Account data of any size
+- `base64+zstd` compresses the Account data using Zstandard and base64-encodes the result
+- `jsonParsed` encoding attempts to use program-specific state parsers
 
-    * `base58`
+**dataSlice** `object` **optional**  
+Request a slice of the account's data:
+- `length: <usize>` - number of bytes to return
+- `offset: <usize>` - byte offset from which to start reading
 
-    * `base64`
+**minContextSlot** `number` **optional**  
+The minimum slot that the request can be evaluated at
 
-    * `base64+zstd`
+</div>
+<div className="col-span-1">
 
-    * `jsonParsed`
-
-    **Details:**
-
-    * `base58` is slow and limited to less than 129 bytes of Account data
-
-    * `base64` will return base64 encoded data for Account data of any size
-
-    * `base64+zstd` compresses the Account data using Zstandard and base64-encodes the result
-
-    * `jsonParsed` encoding attempts to use program-specific state parsers
-
-    **dataSlice** `object` **optional**\
-    Request a slice of the account's data:
-
-    * `length: <usize>` - number of bytes to return
-
-    * `offset: <usize>` - byte offset from which to start reading
-
-    **minContextSlot** `number` **optional**\
-    The minimum slot that the request can be evaluated at
-  </div>
-
-  <div className="col-span-1">
-    #### Code Sample
-
-    ```bash
-    curl https://rpc.testnet.soo.network/rpc -X POST -H "Content-Type: application/json" -d '{
-      "jsonrpc": "2.0",
-      "id": 1,
-      "method": "getAccountInfo",
-      "params": [
-        "vines1vzrYbzLMRdu58ou5XTby4qAqVRLmqo36NKPTg",
-        {
-          "encoding": "base58"
-        }
-      ]
-    }'
-    ```
-
-    #### Response
-
-    ```json
+#### Code Sample
+```bash
+curl https://rpc.testnet.soo.network/rpc -X POST -H "Content-Type: application/json" -d '{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "getAccountInfo",
+  "params": [
+    "vines1vzrYbzLMRdu58ou5XTby4qAqVRLmqo36NKPTg",
     {
-      "jsonrpc": "2.0",
-      "result": {
-        "context": {
-          "slot": 123456789
-        },
-        "value": {
-          "data": ["base58 encoded string", "base58"],
-          "executable": false,
-          "lamports": 1000000000,
-          "owner": "11111111111111111111111111111111",
-          "rentEpoch": 123,
-          "space": 165
-        }
-      },
-      "id": 1
+      "encoding": "base58"
     }
-    ```
-  </div>
+  ]
+}'
+```
+
+#### Response
+```json
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "context": {
+      "slot": 123456789
+    },
+    "value": {
+      "data": ["base58 encoded string", "base58"],
+      "executable": false,
+      "lamports": 1000000000,
+      "owner": "11111111111111111111111111111111",
+      "rentEpoch": 123,
+      "space": 165
+    }
+  },
+  "id": 1
+}
+```
+</div>
 </div>
 
 #### Result
-
 The result will be an RpcResponse JSON object with `value` equal to:
-
-* `<null>` - if the requested account doesn't exist
-
-* `<object>` - otherwise, a JSON object containing:
-
-  * `lamports: <u64>` - number of lamports assigned to this account
-
-  * `owner: <string>` - base-58 encoded Pubkey of the program this account has been assigned to
-
-  * `data: <[string, encoding]|object>` - data associated with the account
-
-  * `executable: <bool>` - boolean indicating if the account contains a program
-
-  * `rentEpoch: <u64>` - the epoch at which this account will next owe rent
-
-  * `space: <u64>` - the data size of the account
+- `<null>` - if the requested account doesn't exist
+- `<object>` - otherwise, a JSON object containing:
+  - `lamports: <u64>` - number of lamports assigned to this account
+  - `owner: <string>` - base-58 encoded Pubkey of the program this account has been assigned to
+  - `data: <[string, encoding]|object>` - data associated with the account
+  - `executable: <bool>` - boolean indicating if the account contains a program
+  - `rentEpoch: <u64>` - the epoch at which this account will next owe rent
+  - `space: <u64>` - the data size of the account
