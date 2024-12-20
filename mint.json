@@ -88,7 +88,8 @@
     "rpc/components/dataStructures",
      "rpc/components/getAccountInfo",
      "rpc/components/getBalance",
-     "rpc/components/getBlock"
+     "rpc/components/getBlock",
+     "rpc/components/getBlockCommitment"
     ]
     },
      {
