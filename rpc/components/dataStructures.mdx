@@ -1,0 +1,96 @@
+# Common JSON Data Structures for SOON RPC Methods
+
+Various SOON RPC methods return complex responses as structured JSON objects. Here are the most common JSON data structures you'll encounter:
+
+## Reports
+
+Reports are the primary data structure in SOON's Oracle system. They contain price feed information and associated metadata.
+
+The JSON structure of a report is defined as follows:
+
+```json
+{
+  "report": {
+    "configDigest": <string>, // Configuration digest for the price feed
+    "epochAndRound": <number>, // Current epoch and round number
+    "extraHash": <string>, // Additional hash information
+    "feedID": <string>, // Unique identifier for the price feed
+    "validFromTimestamp": <number>, // Timestamp from which the report is valid
+    "observationsTimestamp": <number>, // Timestamp when observations were made
+    "nativeFee": <string>, // Fee in native token
+    "tokenFee": <string>, // Fee in ERC20 token
+    "expireAt": <number>, // Timestamp when the report expires
+    "benchmarkPrice": <string>, // Main reference price
+    "askPrice": <string>, // Ask price from aggregated sources
+    "bidPrice": <string>, // Bid price from aggregated sources
+    "signatures": <array[string]>, // List of validator signatures
+    "recovery_ids": <array[number]> // Recovery IDs for signature verification
+  }
+}
+```
+
+## Price Feed Data
+
+Price feeds are another crucial data structure in SOON. Each feed has specific attributes:
+
+```json
+{
+  "name": <string>, // Name of the price pair (e.g., "BTC/USD")
+  "feedID": <string>, // Unique hex identifier for the feed
+  "decimals": <number>, // Number of decimal places (typically 18)
+  "status": <string>, // Current status of the feed
+  "timestamp": <number>, // Last update timestamp
+  "configuration": {
+    "heartbeat": <number>, // Update frequency in seconds
+    "deviation": <number>, // Price deviation threshold
+    "validators": <array[string]> // List of validator addresses
+  }
+}
+```
+
+## Account Information
+
+Account data structure on SOON follows the SVM (Solana Virtual Machine) format:
+
+```json
+{
+  "lamports": <number>, // Account balance in lamports
+  "owner": <string>, // Program that owns this account
+  "data": <[string, string]>, // Account data and its encoding
+  "executable": <boolean>, // Whether account contains executable code
+  "rentEpoch": <number>, // Next rent collection epoch
+  "space": <number> // Size of account data in bytes
+}
+```
+
+## Oracle Observations
+
+Raw oracle observations before aggregation are structured as:
+
+```json
+{
+  "observer": <string>, // Address of the observer
+  "timestamp": <number>, // Observation timestamp
+  "price": <string>, // Observed price
+  "source": <string>, // Data source identifier
+  "confidence": <number>, // Confidence score (0-1)
+  "signature": <string> // Observer's signature
+}
+```
+
+## Important Notes
+
+1. **Numeric Values:**
+   - Large numbers are often returned as strings to preserve precision
+   - Timestamps are in Unix format (seconds since epoch)
+   - Decimal values maintain 18 decimal places for price data
+
+2. **Encoding:**
+   - Addresses and hashes are hex-encoded strings
+   - Signatures are base64-encoded strings
+   - Binary data is typically base58-encoded
+
+3. **Price Representation:**
+   - All prices include 18 decimal places
+   - Use appropriate decimal handling when displaying prices
+   - Both string and numeric representations may be provided
