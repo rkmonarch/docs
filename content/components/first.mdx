@@ -43,7 +43,72 @@ GET /api/soon/reports?feedID=<feedID>&timestamp=<timestamp>
 **Sample response**:
 ```json
 {
-  // Response data will appear here
+  "report": {
+    "configDigest": "00067f925361b2ab26a59cc1997a5c064b3eeb4c9c39262caaf616b42d1ad132",
+    "epochAndRound": 41831448,
+    "extraHash": "0000000000000000000000000000000000000000000000000000000000000000",
+    "feedID": "0x0003665949c883f9e0f6f002eac32e00bd59dfe6c34e92a91c37d6a8322d6489",
+    "validFromTimestamp": 1734670442,
+    "observationsTimestamp": 1734670442,
+    "nativeFee": "3592730136000",
+    "tokenFee": "350000000000000000",
+    "expireAt": 1734756842,
+    "benchmarkPrice": "97418950700000000000000",
+    "askPrice": "97420347300000000000000",
+    "bidPrice": "97418471600000000000000",
+    "signatures": [
+      "7a13e631c86604b0a86ed4c0ab8b9333b8e1aa2a562130575410e8e4896eea5d7e51ea881c40aecc8111665170b5c5b1c7657fc0140abb59d0fc17a9bd71f2a6",
+      "86dd69e9ca6f9a72ff523df29cbc47f88ffded4c75f762abf301477cb4b4b1892053121d0727732547b31d04816679320520a81e0d34488726f7ccf5a3f6e9b9"
+    ],
+    "recovery_ids": [1, 1]
+  }
+}
+```**Sample response**:
+```json
+{
+  "bitcoin": {
+    "report": {
+      "configDigest": "00067f925361b2ab26a59cc1997a5c064b3eeb4c9c39262caaf616b42d1ad132",
+      "epochAndRound": 41829397,
+      "extraHash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "feedID": "0x0003665949c883f9e0f6f002eac32e00bd59dfe6c34e92a91c37d6a8322d6489",
+      "validFromTimestamp": 1734670239,
+      "observationsTimestamp": 1734670239,
+      "nativeFee": "3583841110000",
+      "tokenFee": "350000000000000000",
+      "expireAt": 1734756639,
+      "benchmarkPrice": "97667919100000000000000",
+      "askPrice": "97668263300000000000000",
+      "bidPrice": "97667284900000000000000",
+      "signatures": [
+        "292b2b1eb9a819ac404b560c1d535bb326af210ceea9be28bfd6301394bbead47222c391206f7f0ee0d13a776554519e3c80dfc9a716f57fd414b7c1b0c71cfb",
+        "630bec284feac66cd70e4cf91d7990a99288175e14c36ff5dd8ae1b748f8ce26599e503fdd4265ef2ae119cf5ad567bfe828d3dcb0b20e55e4e4d5f9c060ac44"
+      ],
+      "recovery_ids": [1, 1]
+    }
+  },
+  "ethereum": {
+    "report": {
+      "configDigest": "00060ff11aba5e4b3b494a87988dab392c8c8521291610b8636e03e6666e7c49",
+      "epochAndRound": 41804309,
+      "extraHash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "feedID": "0x0003555ace6b39aae1b894097d0a9fc17f504c62fea598fa206cc6f5088e6e45",
+      "validFromTimestamp": 1734670239,
+      "observationsTimestamp": 1734670239,
+      "nativeFee": "3583466290300",
+      "tokenFee": "350000000000000000",
+      "expireAt": 1734756639,
+      "benchmarkPrice": "3422340000000000000000",
+      "askPrice": "3422531000000000000000",
+      "bidPrice": "3422169500000000000000",
+      "signatures": [
+        "907e43eac2832d69f94adccd633d3c2c0a8df277f12b95d40a0bcb27c9a015ac18400c4912e3a18e7defcdb1e9863ebd714a2ed11824eca6c05627c79a0032cb",
+        "5cb14e3a2b79d60aa7e5f124d66e474e462eed2f03a35fe33edeaf22309a101871b06bed35b82bf6ff22c9b7a198dd11c1774ef4e15b55d20b1933a26c32133a"
+      ],
+      "recovery_ids": [1, 0]
+    }
+  },
+  "timestamp": 1734670239
 }
 ```
 
@@ -60,12 +125,7 @@ GET /api/soon/reports?feedID=<feedID>&timestamp=<timestamp>
 GET /api/soon/reports/latest?feedID=<feedID>
 ```
 
-**Sample response**:
-```json
-{
-  // Response data will appear here
-}
-```
+
 
 #### Return a report for multiple FeedIDs at a given timestamp
 
@@ -81,12 +141,7 @@ GET /api/soon/reports/bulk?feedIDs=<FeedID1>,<FeedID2>,...&timestamp=<timestamp>
 GET /api/soon/reports/bulk?feedIDs=<FeedID1>,<FeedID2>,...&startTimestamp=<startTimestamp>
 ```
 
-**Sample response**:
-```json
-{
-  // Response data will appear here
-}
-```
+
 
 #### Return multiple sequential reports for a single FeedID, starting at a given timestamp
 
@@ -101,12 +156,7 @@ GET /api/soon/reports/bulk?feedIDs=<FeedID1>,<FeedID2>,...&startTimestamp=<start
 GET /api/soon/reports/page?feedID=<FeedID>&startTimestamp=<StartTimestamp>&limit=<Limit>
 ```
 
-**Sample response**:
-```json
-{
-  // Response data will appear here
-}
-```
+
 
 ### WebSocket Connection
 
@@ -123,12 +173,7 @@ Establish a streaming WebSocket connection that sends reports for the given feed
 GET /api/soon/ws?feedIDs=<feedID1>,<feedID2>,...
 ```
 
-**Sample response**:
-```json
-{
-  // Response data will appear here
-}
-```
+
 
 ### Error response codes
 
