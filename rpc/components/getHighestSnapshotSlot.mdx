@@ -1,0 +1,58 @@
+## getHighestSnapshotSlot RPC Method
+
+Returns the highest slot information that the node has snapshots for.
+
+#### Method Details
+This method finds the highest full snapshot slot, and the highest incremental snapshot slot *based on* the full snapshot slot, if there is one.
+
+#### Version Restriction
+This method is only available in `solana-core` v1.9 or newer. Please use getSnapshotSlot for `solana-core` v1.8 and below.
+
+<div className="grid grid-cols-2 gap-1 mt-2">
+  <div className="col-span-1">
+    #### Parameters
+
+    **None**
+  </div>
+
+  <div className="col-span-1">
+    #### Code Sample
+
+    ```bash
+    curl https://rpc.testnet.soo.network/rpc \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+      "jsonrpc": "2.0",
+      "id": 1,
+      "method": "getHighestSnapshotSlot"
+    }'
+    ```
+
+    #### Response
+
+    ```json
+    {
+      "jsonrpc": "2.0",
+      "result": {
+        "full": 369624,
+        "incremental": 369623
+      },
+      "id": 1
+    }
+    ```
+  </div>
+</div>
+
+#### Result Details
+
+When the node has a snapshot, this returns a JSON object with:
+
+* `full: <u64>`
+  * Represents the highest full snapshot slot
+  * A full snapshot contains the complete state of the blockchain at a specific slot
+
+* `incremental: <u64|null>`
+  * Highest incremental snapshot slot based on the full snapshot
+  * May be `null` if no incremental snapshot is available
+  * Incremental snapshots only record changes since the last full snapshot

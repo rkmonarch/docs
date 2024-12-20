@@ -1,0 +1,78 @@
+## getLargestAccounts RPC Method
+
+Returns the 20 largest accounts, by lamport balance (results may be cached up to two hours).
+
+<div className="grid grid-cols-2 gap-1 mt-2">
+  <div className="col-span-1">
+    #### Parameters
+
+    `object` **optional**\
+    Configuration object containing the following fields:
+
+    **commitment** `string` **optional**\
+    The level of commitment desired when querying state
+
+    **filter** `string` **optional**\
+    Filter results by account type
+
+    **Allowed Filter Values:**
+    * `circulatingNonCirculating`
+  </div>
+
+  <div className="col-span-1">
+    #### Code Sample
+
+    ```bash
+    curl https://rpc.testnet.soo.network/rpc \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+      "jsonrpc": "2.0",
+      "id": 1,
+      "method": "getLargestAccounts",
+      "params": [{
+        "commitment": "finalized",
+        "filter": "circulatingNonCirculating"
+      }]
+    }'
+    ```
+
+    #### Response
+
+    ```json
+    {
+      "jsonrpc": "2.0",
+      "result": {
+        "context": {
+          "slot": 369624
+        },
+        "value": [
+          {
+            "address": "5ThJTCxpdn54bk3gBAWKZS4K9ogHEX56WooYbXQDnm3Q",
+            "lamports": 1000000000
+          }
+        ]
+      },
+      "id": 1
+    }
+    ```
+  </div>
+</div>
+
+#### Result Details
+
+The result will be an RpcResponse JSON object with:
+
+* `value`: An array of objects, each containing:
+  * `address: <string>`
+    * Base-58 encoded address of the account
+    * Uniquely identifies the account
+
+  * `lamports: <u64>`
+    * Number of lamports in the account
+    * Represents the account's balance
+
+#### Important Notes
+* Returns up to 20 largest accounts
+* Results may be cached for up to two hours
+* Optional filtering available for account types

@@ -1,0 +1,47 @@
+## getIdentity RPC Method
+
+Returns the identity pubkey for the current node.
+
+<div className="grid grid-cols-2 gap-1 mt-2">
+  <div className="col-span-1">
+    #### Parameters
+
+    **None**
+  </div>
+
+  <div className="col-span-1">
+    #### Code Sample
+
+    ```bash
+    curl https://rpc.testnet.soo.network/rpc \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+      "jsonrpc": "2.0",
+      "id": 1,
+      "method": "getIdentity"
+    }'
+    ```
+
+    #### Response
+
+    ```json
+    {
+      "jsonrpc": "2.0",
+      "result": {
+        "identity": "5ThJTCxpdn54bk3gBAWKZS4K9ogHEX56WooYbXQDnm3Q"
+      },
+      "id": 1
+    }
+    ```
+  </div>
+</div>
+
+#### Result Details
+
+The result field will be a JSON object containing:
+
+* `identity: <string>`
+  * The identity pubkey of the current node
+  * Encoded as a base-58 string
+  * Uniquely identifies the node in the network

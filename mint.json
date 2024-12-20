@@ -89,11 +89,24 @@
      "rpc/components/getAccountInfo",
      "rpc/components/getBalance",
      "rpc/components/getBlock",
-     "rpc/components/getBlockCommitment",
      "rpc/components/getBlockHeight",
      "rpc/components/getBlockProduction",
      "rpc/components/getBlockTime",
-     "rpc/components/getBlocks"
+     "rpc/components/getBlocks",
+     "rpc/components/getBlocksWithLimit",
+     "rpc/components/getClusterNodes",
+     "rpc/components/getEpochInfo",
+     "rpc/components/getEpochSchedule",
+     "rpc/components/getGenesisHash",
+     "rpc/components/getHealth",
+     "rpc/components/getHighestSnapshotSlot",
+     "rpc/components/getIdentity",
+     "rpc/components/getInflationGovernor",
+     "rpc/components/getInflationRate",
+     "rpc/components/getLargestAccounts",
+     "rpc/components/getLatestBlockhash",
+     "rpc/components/getMinimumBalanceForRentExemption",
+     "rpc/components/getMultipleAccounts"
     ]
     },
      {

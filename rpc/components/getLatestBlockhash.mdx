@@ -1,0 +1,71 @@
+## getLatestBlockhash RPC Method
+
+Returns the latest blockhash.
+
+#### Version Restriction
+This method is only available in `solana-core` v1.9 or newer. Please use getRecentBlockhash for `solana-core` v1.8 and below.
+
+<div className="grid grid-cols-2 gap-1 mt-2">
+  <div className="col-span-1">
+    #### Parameters
+
+    `object` **optional**\
+    Configuration object containing the following fields:
+
+    **commitment** `string` **optional**\
+    The level of commitment desired when querying state
+
+    **minContextSlot** `number` **optional**\
+    The minimum slot that the request can be evaluated at
+  </div>
+
+  <div className="col-span-1">
+    #### Code Sample
+
+    ```bash
+    curl https://rpc.testnet.soo.network/rpc \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+      "jsonrpc": "2.0",
+      "id": 1,
+      "method": "getLatestBlockhash",
+      "params": [{
+        "commitment": "finalized",
+        "minContextSlot": 0
+      }]
+    }'
+    ```
+
+    #### Response
+
+    ```json
+    {
+      "jsonrpc": "2.0",
+      "result": {
+        "context": {
+          "slot": 369624
+        },
+        "value": {
+          "blockhash": "5ThJTCxpdn54bk3gBAWKZS4K9ogHEX56WooYbXQDnm3Q",
+          "lastValidBlockHeight": 369624
+        }
+      },
+      "id": 1
+    }
+    ```
+  </div>
+</div>
+
+#### Result Details
+
+The result is a JSON object with `context` and `value` fields:
+
+* `value` contains:
+  * `blockhash: <string>`
+    * Latest blockhash as a base-58 encoded string
+    * Used to identify and verify the current state of the blockchain
+
+  * `lastValidBlockHeight: <u64>`
+    * The last block height at which the blockhash will be valid
+    * Defines the expiration point for transactions using this blockhash

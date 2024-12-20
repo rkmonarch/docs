@@ -1,0 +1,73 @@
+## getInflationGovernor RPC Method
+
+Returns the current inflation governor.
+
+<div className="grid grid-cols-2 gap-1 mt-2">
+  <div className="col-span-1">
+    #### Parameters
+
+    `object` **optional**\
+    Configuration object containing the following fields:
+
+    **commitment** `string` **optional**\
+    The level of commitment desired when querying state
+  </div>
+
+  <div className="col-span-1">
+    #### Code Sample
+
+    ```bash
+    curl https://rpc.testnet.soo.network/rpc \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+      "jsonrpc": "2.0",
+      "id": 1,
+      "method": "getInflationGovernor",
+      "params": [{
+        "commitment": "finalized"
+      }]
+    }'
+    ```
+
+    #### Response
+
+    ```json
+    {
+      "jsonrpc": "2.0",
+      "result": {
+        "initial": 0.08,
+        "terminal": 0.015,
+        "taper": 0.15,
+        "foundation": 0.05,
+        "foundationTerm": 7
+      },
+      "id": 1
+    }
+    ```
+  </div>
+</div>
+
+#### Result Details
+
+The result field will be a JSON object containing:
+
+* `initial: <f64>`
+  * The initial inflation percentage from time 0
+  * Represents the starting point of the network's inflation rate
+
+* `terminal: <f64>`
+  * Terminal inflation percentage
+  * The lowest point the inflation rate will reach
+
+* `taper: <f64>`
+  * Rate per year at which inflation is lowered
+  * Rate reduction is derived using the target slot time in genesis config
+
+* `foundation: <f64>`
+  * Percentage of total inflation allocated to the foundation
+  * Represents the portion of inflation reserved for network development
+
+* `foundationTerm: <f64>`
+  * Duration of foundation pool inflation in years
+  * Specifies how long the foundation will receive an inflation allocation

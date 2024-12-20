@@ -1,0 +1,51 @@
+## getHealth RPC Method
+
+Returns the current health of the node.
+
+#### Health Criteria
+A healthy node is one that is within `HEALTH_CHECK_SLOT_DISTANCE` slots of the latest cluster confirmed slot.
+
+<div className="grid grid-cols-2 gap-1 mt-2">
+  <div className="col-span-1">
+    #### Parameters
+
+    **None**
+  </div>
+
+  <div className="col-span-1">
+    #### Code Sample
+
+    ```bash
+    curl https://rpc.testnet.soo.network/rpc \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+      "jsonrpc": "2.0",
+      "id": 1,
+      "method": "getHealth"
+    }'
+    ```
+
+    #### Response
+
+    ```json
+    {
+      "jsonrpc": "2.0",
+      "result": "ok",
+      "id": 1
+    }
+    ```
+
+    #### Unhealthy Node Response
+    When the node is unhealthy, a JSON RPC error response will be returned instead of the "ok" result.
+  </div>
+</div>
+
+#### Result Details
+
+* If the node is healthy: Returns the string `"ok"`
+* If the node is unhealthy: A JSON RPC error response is returned
+
+#### Important Notes
+* The specifics of the error response are **UNSTABLE** and may change in the future
+* Health is determined by the node's proximity to the latest cluster confirmed slot

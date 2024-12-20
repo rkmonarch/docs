@@ -1,0 +1,65 @@
+## getBlocksWithLimit RPC Method
+
+Returns a list of confirmed blocks starting at the given slot.
+
+<div className="grid grid-cols-2 gap-1 mt-2">
+  <div className="col-span-1">
+    #### Parameters
+
+    `u64` **required**\
+    Start slot, as `u64` integer
+
+    `u64` **required**\
+    Limit, as `u64` integer
+    * Must be no more than 500,000 blocks higher than the `start_slot`
+
+    `object` **optional**\
+    Configuration object containing the following field:
+
+    **commitment** `string` **optional**\
+    Default: `finalized`
+    * "processed" is not supported
+  </div>
+
+  <div className="col-span-1">
+    #### Code Sample
+
+    ```bash
+    curl https://rpc.testnet.soo.network/rpc \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+      "jsonrpc": "2.0",
+      "id": 1,
+      "method": "getBlocksWithLimit",
+      "params": [
+        369000,
+        10,
+        {
+          "commitment": "finalized"
+        }
+      ]
+    }'
+    ```
+
+    #### Response
+
+    ```json
+    {
+      "jsonrpc": "2.0",
+      "result": [369000, 369100, 369200, 369300, 369400, 369500, 369600, 369610, 369620, 369624],
+      "id": 1
+    }
+    ```
+  </div>
+</div>
+
+#### Result Details
+
+The result field will be:
+
+* An array of `u64` integers listing confirmed blocks
+* Starts at the specified `start_slot`
+* Contains up to `limit` number of blocks
+* Inclusive range
+* Maximum allowed range is 500,000 slots

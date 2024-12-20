@@ -1,0 +1,66 @@
+## getEpochSchedule RPC Method
+
+Returns the epoch schedule information from this cluster's genesis config.
+
+<div className="grid grid-cols-2 gap-1 mt-2">
+  <div className="col-span-1">
+    #### Parameters
+
+    **None**
+  </div>
+
+  <div className="col-span-1">
+    #### Code Sample
+
+    ```bash
+    curl https://rpc.testnet.soo.network/rpc \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+      "jsonrpc": "2.0",
+      "id": 1,
+      "method": "getEpochSchedule"
+    }'
+    ```
+
+    #### Response
+
+    ```json
+    {
+      "jsonrpc": "2.0",
+      "result": {
+        "slotsPerEpoch": 432000,
+        "leaderScheduleSlotOffset": 432000,
+        "warmup": true,
+        "firstNormalEpoch": 0,
+        "firstNormalSlot": 0
+      },
+      "id": 1
+    }
+    ```
+  </div>
+</div>
+
+#### Result Details
+
+The result field will be an object containing:
+
+* `slotsPerEpoch: <u64>`
+  * The maximum number of slots in each epoch
+  * Defines the total slots allocated for a single epoch
+
+* `leaderScheduleSlotOffset: <u64>`
+  * Number of slots before the beginning of an epoch used to calculate the leader schedule
+  * Determines when the leader schedule for an upcoming epoch is computed
+
+* `warmup: <bool>`
+  * Indicates whether epochs start short and gradually grow
+  * `true` means the initial epochs have fewer slots before reaching full length
+
+* `firstNormalEpoch: <u64>`
+  * The first epoch with a standard (full) number of slots
+  * Calculated as log2(slotsPerEpoch) - log2(MINIMUM_SLOTS_PER_EPOCH)
+
+* `firstNormalSlot: <u64>`
+  * The first slot of the first normal-length epoch
+  * Calculated as MINIMUM_SLOTS_PER_EPOCH * (2^firstNormalEpoch - 1)

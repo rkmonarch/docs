@@ -1,0 +1,61 @@
+## getInflationRate RPC Method
+
+Returns the specific inflation values for the current epoch.
+
+<div className="grid grid-cols-2 gap-1 mt-2">
+  <div className="col-span-1">
+    #### Parameters
+
+    **None**
+  </div>
+
+  <div className="col-span-1">
+    #### Code Sample
+
+    ```bash
+    curl https://rpc.testnet.soo.network/rpc \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+      "jsonrpc": "2.0",
+      "id": 1,
+      "method": "getInflationRate"
+    }'
+    ```
+
+    #### Response
+
+    ```json
+    {
+      "jsonrpc": "2.0",
+      "result": {
+        "total": 0.08,
+        "validator": 0.05,
+        "foundation": 0.03,
+        "epoch": 123
+      },
+      "id": 1
+    }
+    ```
+  </div>
+</div>
+
+#### Result Details
+
+The result field will be a JSON object containing:
+
+* `total: <f64>`
+  * Total inflation rate for the current epoch
+  * Represents the overall percentage of new tokens created
+
+* `validator: <f64>`
+  * Inflation allocated to validators
+  * Percentage of total inflation distributed to network validators
+
+* `foundation: <f64>`
+  * Inflation allocated to the foundation
+  * Percentage of total inflation reserved for network development
+
+* `epoch: <u64>`
+  * The specific epoch for which these inflation values are valid
+  * Indicates the current epoch number

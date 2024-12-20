@@ -1,0 +1,78 @@
+## getClusterNodes RPC Method
+
+Returns information about all the nodes participating in the cluster.
+
+<div className="grid grid-cols-2 gap-1 mt-2">
+  <div className="col-span-1">
+    #### Parameters
+
+    **None**
+  </div>
+
+  <div className="col-span-1">
+    #### Code Sample
+
+    ```bash
+    curl https://rpc.testnet.soo.network/rpc \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+      "jsonrpc": "2.0",
+      "id": 1,
+      "method": "getClusterNodes"
+    }'
+    ```
+
+    #### Response
+
+    ```json
+    {
+      "jsonrpc": "2.0",
+      "result": [
+        {
+          "pubkey": "5ThJTCxpdn54bk3gBAWKZS4K9ogHEX56WooYbXQDnm3Q",
+          "gossip": "127.0.0.1:1024",
+          "tpu": "127.0.0.1:1025",
+          "rpc": "127.0.0.1:8899",
+          "version": "1.16.0",
+          "featureSet": 2094764835,
+          "shredVersion": 22255
+        }
+      ],
+      "id": 1
+    }
+    ```
+  </div>
+</div>
+
+#### Result Details
+
+The result field will be an array of JSON objects, each containing:
+
+* `pubkey: <string>`
+  * Node public key
+  * Encoded as a base-58 string
+
+* `gossip: <string|null>`
+  * Gossip network address for the node
+  * `null` if not available
+
+* `tpu: <string|null>`
+  * TPU (Transaction Processing Unit) network address
+  * `null` if not available
+
+* `rpc: <string|null>`
+  * JSON RPC network address
+  * `null` if JSON RPC service is not enabled
+
+* `version: <string|null>`
+  * Software version of the node
+  * `null` if version information is unavailable
+
+* `featureSet: <u32|null>`
+  * Unique identifier of the node's feature set
+  * `null` if not available
+
+* `shredVersion: <u16|null>`
+  * Shred version configured for the node
+  * `null` if not available

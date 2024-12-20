@@ -1,0 +1,120 @@
+## getMultipleAccounts RPC Method
+
+Returns the account information for a list of Pubkeys.
+
+<div className="grid grid-cols-2 gap-1 mt-2">
+  <div className="col-span-1">
+    #### Parameters
+
+    `array` **required**\
+    An array of Pubkeys to query, as base-58 encoded strings
+    * Maximum of 100 Pubkeys per request
+
+    `object` **optional**\
+    Configuration object containing the following fields:
+
+    **commitment** `string` **optional**\
+    The level of commitment desired when querying state
+
+    **minContextSlot** `number` **optional**\
+    The minimum slot that the request can be evaluated at
+
+    **dataSlice** `object` **optional**\
+    Request a slice of the account's data
+    * `length: <usize>` - number of bytes to return
+    * `offset: <usize>` - byte offset from which to start reading
+
+    **encoding** `string` **optional**\
+    Default: `base64`
+
+    **Allowed Encoding Values:**
+    * `jsonParsed`
+    * `base58`
+    * `base64`
+    * `base64+zstd`
+
+    #### Data Slicing Note
+    Data slicing is only available for `base58`, `base64`, or `base64+zstd` encodings.
+  </div>
+
+  <div className="col-span-1">
+    #### Code Sample
+
+    ```bash
+    curl https://rpc.testnet.soo.network/rpc \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+      "jsonrpc": "2.0",
+      "id": 1,
+      "method": "getMultipleAccounts",
+      "params": [
+        [
+          "FVP39NNZMKfEDzbg3BWWZEiYPH3wyFp5kmtuN3M2AZFo",
+        "6dRnxBGavrfCyKRwfkdwBWxVwwBpwx4ZJpca6K5bbLYo"
+        ],
+        {
+          "commitment": "finalized",
+          "encoding": "base64",
+          "dataSlice": {
+            "offset": 0,
+            "length": 64
+          }
+        }
+      ]
+    }'
+    ```
+
+    #### Response
+
+    ```json
+    {
+      "jsonrpc": "2.0",
+      "result": {
+        "context": {
+          "slot": 369624
+        },
+        "value": [
+          {
+            "lamports": 1000000000,
+            "owner": "11111111111111111111111111111111",
+            "data": ["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "base64"],
+            "executable": false,
+            "rentEpoch": 123,
+            "space": 128
+          },
+          null
+        ]
+      },
+      "id": 1
+    }
+    ```
+  </div>
+</div>
+
+#### Result Details
+
+The result will be a JSON object with `value` as an array containing:
+
+* `<null>` - If the account at the specified Pubkey doesn't exist
+
+* `<object>` - Account information, including:
+  * `lamports: <u64>`
+    * Number of lamports assigned to the account
+  
+  * `owner: <string>`
+    * Base-58 encoded Pubkey of the program owning the account
+  
+  * `data: <[string, encoding]|object>`
+    * Account data in specified encoding
+    * Can be encoded binary data or parsed JSON format
+  
+  * `executable: <bool>`
+    * Indicates if the account contains a program
+    * `true` means the account is read-only
+  
+  * `rentEpoch: <u64>`
+    * Epoch at which the account will next owe rent
+  
+  * `space: <u64>`
+    * Total data size of the account

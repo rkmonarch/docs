@@ -1,0 +1,82 @@
+## getEpochInfo RPC Method
+
+Returns information about the current epoch.
+
+<div className="grid grid-cols-2 gap-1 mt-2">
+  <div className="col-span-1">
+    #### Parameters
+
+    `object` **optional**\
+    Configuration object containing the following fields:
+
+    **commitment** `string` **optional**\
+    The level of commitment desired when querying state
+
+    **minContextSlot** `number` **optional**\
+    The minimum slot that the request can be evaluated at
+  </div>
+
+  <div className="col-span-1">
+    #### Code Sample
+
+    ```bash
+    curl https://rpc.testnet.soo.network/rpc \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+      "jsonrpc": "2.0",
+      "id": 1,
+      "method": "getEpochInfo",
+      "params": [{
+        "commitment": "finalized",
+        "minContextSlot": 0
+      }]
+    }'
+    ```
+
+    #### Response
+
+    ```json
+    {
+      "jsonrpc": "2.0",
+      "result": {
+        "absoluteSlot": 369624,
+        "blockHeight": 369624,
+        "epoch": 123,
+        "slotIndex": 224,
+        "slotsInEpoch": 432000,
+        "transactionCount": 1234567
+      },
+      "id": 1
+    }
+    ```
+  </div>
+</div>
+
+#### Result Details
+
+The result field will be an object containing:
+
+* `absoluteSlot: <u64>`
+  * The current slot in the blockchain
+  * Represents the total number of slots processed
+
+* `blockHeight: <u64>`
+  * The current block height
+  * Number of blocks beneath the highest block
+
+* `epoch: <u64>`
+  * The current epoch number
+  * Represents the current epoch in the blockchain
+
+* `slotIndex: <u64>`
+  * The current slot relative to the start of the current epoch
+  * Shows progress within the current epoch
+
+* `slotsInEpoch: <u64>`
+  * Total number of slots in the current epoch
+  * Defines the length of the current epoch
+
+* `transactionCount: <u64|null>`
+  * Total number of transactions processed without error since genesis
+  * May be `null` if not available

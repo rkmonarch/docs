@@ -1,0 +1,56 @@
+## getMinimumBalanceForRentExemption RPC Method
+
+Returns minimum balance required to make an account rent exempt.
+
+<div className="grid grid-cols-2 gap-1 mt-2">
+  <div className="col-span-1">
+    #### Parameters
+
+    `usize` **optional**\
+    The Account's data length
+
+    `object` **optional**\
+    Configuration object containing the following fields:
+
+    **commitment** `string` **optional**\
+    The level of commitment desired when querying state
+  </div>
+
+  <div className="col-span-1">
+    #### Code Sample
+
+    ```bash
+    curl https://rpc.testnet.soo.network/rpc \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+      "jsonrpc": "2.0",
+      "id": 1,
+      "method": "getMinimumBalanceForRentExemption",
+      "params": [
+        1024,
+        {
+          "commitment": "finalized"
+        }
+      ]
+    }'
+    ```
+
+    #### Response
+
+    ```json
+    {
+      "jsonrpc": "2.0",
+      "result": 2039280,
+      "id": 1
+    }
+    ```
+  </div>
+</div>
+
+#### Result Details
+
+* `<u64>` - Minimum lamports required
+  * The minimum balance needed to keep the account rent-exempt
+  * Calculated based on the account's data length
+  * Prevents the account from being deleted due to insufficient funds for rent
