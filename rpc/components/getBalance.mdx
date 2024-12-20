@@ -1,0 +1,57 @@
+### getBalance RPC Method
+Returns the lamport balance of the account of provided Pubkey.
+
+<div className="grid grid-cols-2 gap-1 mt-2">
+<div className="col-span-1">
+
+#### Parameters
+`string` **required**  
+Pubkey of account to query, as base-58 encoded string
+
+`object` **optional**  
+Configuration object containing the following fields:
+
+**commitment** `string` **optional**  
+The level of commitment desired when querying state
+
+**minContextSlot** `number` **optional**  
+The minimum slot that the request can be evaluated at
+
+</div>
+<div className="col-span-1">
+
+#### Code Sample
+```bash
+curl https://rpc.testnet.soo.network/rpc -X POST -H "Content-Type: application/json" -d '{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "getBalance",
+  "params": [
+    "6dRnxBGavrfCyKRwfkdwBWxVwwBpwx4ZJpca6K5bbLYo",
+    {
+      "commitment": "finalized"
+    }
+  ]
+}'
+```
+
+#### Response
+```json
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "context": {
+      "slot": 123456789
+    },
+    "value": 1000000000
+  },
+  "id": 1
+}
+```
+
+</div>
+</div>
+
+#### Result
+The result will be an RpcResponse JSON object with `value` field equal to:
+- Number of lamports in the account, as a u64 integer
