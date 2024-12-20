@@ -92,7 +92,8 @@
      "rpc/components/getBlockCommitment",
      "rpc/components/getBlockHeight",
      "rpc/components/getBlockProduction",
-     "rpc/components/getBlockTime"
+     "rpc/components/getBlockTime",
+     "rpc/components/getBlocks"
     ]
     },
      {
