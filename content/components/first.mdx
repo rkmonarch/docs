@@ -1,18 +1,12 @@
-# Building on SOON
+# 🔨 Building on SOON
 
-<div className="flex items-center space-x-2 mb-8">
-  <span className="text-3xl">🔨</span>
-  <h1 className="text-3xl font-bold">Oracle Integration</h1>
-</div>
+## Oracle
 
-## About APRO Oracle
+## About APRO
 
-<InfoCard>
-  <InfoCardTitle>Why SOON?</InfoCardTitle>
-  <InfoCardContent>
-    APRO has chosen SOON as their first SVM (Solana Virtual Machine) chain to support oracle services, marking a significant milestone in expanding their cross-chain oracle capabilities.
-  </InfoCardContent>
-</InfoCard>
+<Note>
+APRO has chosen SOON as their first SVM (Solana Virtual Machine) chain to support oracle services, marking a significant milestone in expanding their cross-chain oracle capabilities.
+</Note>
 
 ### Overview
 
@@ -22,148 +16,145 @@ APRO Data Service supports two data models—**Data Push** and **Data Pull**—t
 
 ### Data Service Models
 
-<Card>
-  <CardTitle>Data Push</CardTitle>
-  <CardContent>
-    Uses a "Push-Based" data model where decentralized independent node operators continuously gather and push data updates to the blockchain when certain price thresholds or time intervals are met. This improves blockchain scalability and provides timely updates.
-  </CardContent>
-</Card>
+- **Data Push**: Uses a "Push-Based" data model where decentralized independent node operators continuously gather and push data updates to the blockchain when certain price thresholds or time intervals are met. This improves blockchain scalability and provides timely updates.
 
-<Card>
-  <CardTitle>Data Pull</CardTitle>
-  <CardContent>
-    Uses a "Pull-Based" data model to deliver real-time Price Feed services to dApps. Designed for on-demand access, high-frequency updates, low latency, and cost-effective integration, making it ideal for DeFi protocols and decentralized exchanges.
-  </CardContent>
-</Card>
+- **Data Pull**: Uses a "Pull-Based" data model to deliver real-time Price Feed services to dApps. Designed for on-demand access, high-frequency updates, low latency, and cost-effective integration, making it ideal for DeFi protocols and decentralized exchanges.
 
 ### Key Benefits
 
-<FeatureList>
-  <Feature title="Combined Off-Chain & On-Chain Architecture">
-    - Integrates off-chain computing with on-chain verification
-    - Extends computing capabilities while ensuring system security
-  </Feature>
+1. **Combined Off-Chain & On-Chain Architecture**
+   - Integrates off-chain computing with on-chain verification
+   - Extends computing capabilities while ensuring system security
 
-  <Feature title="Customizable Computing Logic">
-    - DApp businesses can implement custom computing logic
-    - Secure business logic processing without compromising security
-  </Feature>
+2. **Customizable Computing Logic**
+   - DApp businesses can implement custom computing logic
+   - Secure business logic processing without compromising security
 
-  <Feature title="Enhanced Security Features">
-    - Hybrid node approach combining on-chain and off-chain resources
-    - Multi-network communication scheme to prevent single-point failures
-    - TVWAP price discovery mechanism for fair and accurate data
-  </Feature>
-</FeatureList>
+3. **Enhanced Security Features**
+   - Hybrid node approach combining on-chain and off-chain resources
+   - Multi-network communication scheme to prevent single-point failures
+   - TVWAP price discovery mechanism for fair and accurate data
 
 ## Integration Guide
 
 ### Program IDs
 
-<TableContainer>
 | Description | Devnet | Testnet |
 |------------|---------|----------|
 | Apro_SVM_Oracle | `4Mvy4RKRyJMf4PHavvGUuTj9agoddUZ9atQoFma1tyMY` | Coming soon |
 | Sample_Client | `HUJ8ouH6fVonhF1hPV6ENoLid5nbHfyZSpvfujw6X6Hm` | Coming soon |
-</TableContainer>
 
 ### Authentication
 
-<Note>
-  All routes require the following two headers for user authentication:
-</Note>
+#### Headers
 
-<TableContainer>
+All routes require the following two headers for user authentication:
+
 | Header | Description |
 |--------|-------------|
-| `Authorization` | The user's unique identifier, provided as a UUID (Universally Unique IDentifier). |
-| `X-Authorization-Timestamp` | The current timestamp, with precision up to milliseconds. The timestamp must closely synchronize with the server time, allowing a maximum discrepancy of 5 seconds (by default). |
-</TableContainer>
+| Authorization | The user's unique identifier, provided as a UUID (Universally Unique IDentifier). |
+| X-Authorization-Timestamp | The current timestamp, with precision up to milliseconds. The timestamp must closely synchronize with the server time, allowing a maximum discrepancy of 5 seconds (by default). |
 
-### API Endpoints
+### API endpoints
 
-#### Single Report Endpoint
+#### Return a single report at a given timestamp
 
-<EndpointCard title="/api/soon/reports">
-  <TableContainer>
-    | Type | Description | Parameter(s) |
-    |------|-------------|--------------|
-    | HTTP GET | Returns a single report for a given timestamp. | • feedID: A Data Streams feed ID<br/>• timestamp: The Unix timestamp for the report |
-  </TableContainer>
+**Endpoint**: `/api/soon/reports`
 
-  <CodeExample title="Request">
-    ```bash
-    GET /api/soon/reports?feedID=<feedID>&timestamp=<timestamp>
-    ```
-  </CodeExample>
+| Type | Description | Parameter(s) |
+|------|-------------|--------------|
+| HTTP GET | Returns a single report for a given timestamp. | • feedID: A Data Streams feed ID<br/>• timestamp: The Unix timestamp for the report |
 
-  <CodeExample title="Response">
-    ```json
-    {
-      "report": {
-        "configDigest": "00067f925361b2ab26a59cc1997a5c064b3eeb4c9c39262caaf616b42d1ad132",
-        "epochAndRound": 41831448,
-        "extraHash": "0000000000000000000000000000000000000000000000000000000000000000",
-        "feedID": "0x0003665949c883f9e0f6f002eac32e00bd59dfe6c34e92a91c37d6a8322d6489",
-        "validFromTimestamp": 1734670442,
-        "observationsTimestamp": 1734670442,
-        "nativeFee": "3592730136000",
-        "tokenFee": "350000000000000000",
-        "expireAt": 1734756842,
-        "benchmarkPrice": "97418950700000000000000",
-        "askPrice": "97420347300000000000000",
-        "bidPrice": "97418471600000000000000",
-        "signatures": [
-          "7a13e631c86604b0a86ed4c0ab8b9333b8e1aa2a562130575410e8e4896eea5d7e51ea881c40aecc8111665170b5c5b1c7657fc0140abb59d0fc17a9bd71f2a6",
-          "86dd69e9ca6f9a72ff523df29cbc47f88ffded4c75f762abf301477cb4b4b1892053121d0727732547b31d04816679320520a81e0d34488726f7ccf5a3f6e9b9"
-        ],
-        "recovery_ids": [1, 1]
-      }
-    }
-    ```
-  </CodeExample>
-</EndpointCard>
+**Sample request**:
+```bash
+GET /api/soon/reports?feedID=<feedID>&timestamp=<timestamp>
+```
 
-#### Latest Report Endpoint
+**Sample response**:
+```json
+{
+  "report": {
+    "configDigest": "00067f925361b2ab26a59cc1997a5c064b3eeb4c9c39262caaf616b42d1ad132",
+    "epochAndRound": 41831448,
+    "extraHash": "0000000000000000000000000000000000000000000000000000000000000000",
+    "feedID": "0x0003665949c883f9e0f6f002eac32e00bd59dfe6c34e92a91c37d6a8322d6489",
+    "validFromTimestamp": 1734670442,
+    "observationsTimestamp": 1734670442,
+    "nativeFee": "3592730136000",
+    "tokenFee": "350000000000000000",
+    "expireAt": 1734756842,
+    "benchmarkPrice": "97418950700000000000000",
+    "askPrice": "97420347300000000000000",
+    "bidPrice": "97418471600000000000000",
+    "signatures": [
+      "7a13e631c86604b0a86ed4c0ab8b9333b8e1aa2a562130575410e8e4896eea5d7e51ea881c40aecc8111665170b5c5b1c7657fc0140abb59d0fc17a9bd71f2a6",
+      "86dd69e9ca6f9a72ff523df29cbc47f88ffded4c75f762abf301477cb4b4b1892053121d0727732547b31d04816679320520a81e0d34488726f7ccf5a3f6e9b9"
+    ],
+    "recovery_ids": [1, 1]
+  }
+}
+```
 
-<EndpointCard title="/api/soon/reports/latest">
-  <TableContainer>
-    | Type | Parameter(s) |
-    |------|--------------|
-    | HTTP GET | feedID: A Data Streams feed ID |
-  </TableContainer>
+#### Return a single report with the latest timestamp
 
-  <CodeExample>
-    ```bash
-    GET /api/soon/reports/latest?feedID=<feedID>
-    ```
-  </CodeExample>
-</EndpointCard>
+**Endpoint**: `/api/soon/reports/latest`
 
-#### Bulk Reports Endpoint
+| Type | Parameter(s) |
+|------|--------------|
+| HTTP GET | feedID: A Data Streams feed ID |
 
-<EndpointCard title="/api/soon/reports/bulk">
-  <TableContainer>
-    | Type | Description | Parameter(s) |
-    |------|-------------|--------------|
-    | HTTP GET | Return a report for multiple FeedIDs at a given timestamp. | • feedIDs: A comma-separated list of Data Streams feed IDs<br/>• timestamp: The Unix timestamp for the reports<br/>• startTimestamp: The Unix timestamp for the first report |
-  </TableContainer>
+**Sample request**:
+```bash
+GET /api/soon/reports/latest?feedID=<feedID>
+```
 
-  <CodeExample>
-    ```bash
-    GET /api/soon/reports/bulk?feedIDs=<FeedID1>,<FeedID2>,...&timestamp=<timestamp>
-    GET /api/soon/reports/bulk?feedIDs=<FeedID1>,<FeedID2>,...&startTimestamp=<startTimestamp>
-    ```
-  </CodeExample>
-</EndpointCard>
+#### Return a report for multiple FeedIDs at a given timestamp
 
-### Error Codes
+**Endpoint**: `/api/soon/reports/bulk`
 
-<TableContainer>
+| Type | Description | Parameter(s) |
+|------|-------------|--------------|
+| HTTP GET | Return a report for multiple FeedIDs at a given timestamp. | • feedIDs: A comma-separated list of Data Streams feed IDs<br/>• timestamp: The Unix timestamp for the reports<br/>• startTimestamp: The Unix timestamp for the first report |
+
+**Sample request**:
+```bash
+GET /api/soon/reports/bulk?feedIDs=<FeedID1>,<FeedID2>,...&timestamp=<timestamp>
+GET /api/soon/reports/bulk?feedIDs=<FeedID1>,<FeedID2>,...&startTimestamp=<startTimestamp>
+```
+
+#### Return multiple sequential reports for a single FeedID
+
+**Endpoint**: `/api/soon/reports/page`
+
+| Type | Description | Parameter(s) |
+|------|-------------|--------------|
+| HTTP GET | Return multiple sequential reports for a single FeedID, starting at a given timestamp. | • feedID: A Data Streams feed ID<br/>• startTimestamp: The Unix timestamp for the first report<br/>• limit (optional): The number of reports to return |
+
+**Sample request**:
+```bash
+GET /api/soon/reports/page?feedID=<FeedID>&startTimestamp=<StartTimestamp>&limit=<Limit>
+```
+
+### WebSocket Connection
+
+Establish a streaming WebSocket connection that sends reports for the given feedID(s) after they are verified.
+
+**Endpoint**: `/api/soon/ws`
+
+| Type | Parameter(s) |
+|------|--------------|
+| WebSocket | feedIDs: A comma-separated list of Data Streams feed IDs |
+
+**Sample request**:
+```bash
+GET /api/soon/ws?feedIDs=<feedID1>,<feedID2>,...
+```
+
+### Error Response Codes
+
 | Status Code | Description |
 |------------|-------------|
-| `400` Bad Request | This error occurs when:<br/>• There is any missing/malformed query argument<br/>• Required headers are missing or provided with incorrect values |
-| `401` Unauthorized | This error occurs when:<br/>• Authentication fails due to invalid HMAC signature<br/>• User requests access to an unauthorized feed |
-| `500` Internal Server | Indicates an unexpected server condition preventing request fulfillment |
-| `206` Partial Content | Indicates partial data availability (bulk endpoint only). Example: When requesting data for `feedID1`, `feedID2`, and `feedID3`, if `feedID2` data is unavailable, returns `[feedID1 data, feedID3 data]` with 206 status |
-</TableContainer>
+| 400 Bad Request | This error is triggered when:<br/>• There is any missing/malformed query argument<br/>• Required headers are missing or provided with incorrect values |
+| 401 Unauthorized | This error is triggered when:<br/>• Authentication fails due to invalid HMAC signature<br/>• User requests access to an unauthorized feed |
+| 500 Internal Server | Indicates an unexpected server condition preventing request fulfillment |
+| 206 Partial Content | Indicates partial data availability (bulk endpoint only). Example: When requesting data for `feedID1`, `feedID2`, and `feedID3`, if `feedID2` data is unavailable, returns `[feedID1 data, feedID3 data]` with 206 status |
